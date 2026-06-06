@@ -328,6 +328,7 @@ img {
 
 .hero__ribbon-inner {
   display: flex;
+  width: max-content;
   animation: marquee-down 30s linear infinite;
 }
 
