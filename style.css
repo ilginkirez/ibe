@@ -300,28 +300,38 @@ img {
   left: -60px;
 }
 
-/* Sağ üstten girip alt ortaya yakın çıkan uzun çapraz bant */
+/* Sağ üstten girip alt ortaya yakın çıkan uzun siyah animasyonlu çapraz bant */
 .hero__ribbon {
   position: absolute;
-  top: -20px;
-  right: -5vw;
-  width: 150vw;
-  background: var(--color-accent-orange);
+  top: -50px;
+  left: 100%;
+  width: 200vw;
+  background: #000000;
   color: var(--color-white);
-  padding: 12px 0;
-  font-size: var(--font-size-base);
-  font-weight: 800;
+  padding: 24px 0;
+  font-size: var(--font-size-3xl);
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 6px;
-  transform-origin: top right;
-  transform: rotate(-38deg);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  letter-spacing: 8px;
+  transform-origin: top left;
+  transform: rotate(140deg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   z-index: 0;
-  text-align: right;
-  padding-right: 15vw;
   pointer-events: none;
   white-space: nowrap;
   opacity: 0.95;
+  display: flex;
+  overflow: hidden;
+}
+
+.hero__ribbon-inner {
+  display: flex;
+  animation: marquee-down 15s linear infinite;
+}
+
+@keyframes marquee-down {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 .hero__content {
