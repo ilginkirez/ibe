@@ -1720,15 +1720,15 @@ input:focus-visible {
 
 /* Dolu Koltuk State (Disabled Checkbox) */
 .seat-checkbox:disabled + .seat {
-  background: #e2e8f0;
-  border-color: #cbd5e1;
+  background: #424242;
+  border-color: #2a2a2a;
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .seat-checkbox:disabled + .seat::before,
 .seat-checkbox:disabled + .seat::after {
-  background: #cbd5e1;
+  background: #2a2a2a;
 }
 
 .seat-checkbox:disabled + .seat:hover {
@@ -1769,13 +1769,13 @@ input:focus-visible {
 }
 
 .occupied-example {
-  background: #e2e8f0;
-  border-color: #cbd5e1;
-  opacity: 0.6;
+  background: #424242;
+  border-color: #2a2a2a;
+  opacity: 0.8;
 }
 .occupied-example::before,
 .occupied-example::after {
-  background: #cbd5e1;
+  background: #2a2a2a;
 }
 
 .ticket-actions {
