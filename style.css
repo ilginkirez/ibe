@@ -124,10 +124,10 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--color-primary-gradient);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--color-border);
   padding: 0 24px;
 }
 
@@ -145,19 +145,19 @@ img {
   gap: 10px;
   font-size: var(--font-size-xl);
   font-weight: 800;
-  color: var(--color-white);
+  color: var(--color-primary);
   letter-spacing: -0.5px;
 }
 
 .navbar__logo-icon {
   width: 36px;
   height: 36px;
-  background: var(--color-white);
+  background: var(--color-primary-gradient);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-primary);
+  color: var(--color-white);
   font-size: var(--font-size-lg);
   font-weight: 900;
 }
@@ -172,7 +172,7 @@ img {
 .navbar__menu a {
   font-size: var(--font-size-sm);
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-text-secondary);
   transition: color var(--transition-fast);
   position: relative;
   padding: 4px 0;
@@ -185,13 +185,13 @@ img {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--color-white);
+  background: var(--color-primary);
   border-radius: 2px;
   transition: width var(--transition-normal);
 }
 
 .navbar__menu a:hover {
-  color: var(--color-white);
+  color: var(--color-primary);
 }
 
 .navbar__menu a:hover::after {
@@ -203,26 +203,6 @@ img {
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.navbar .btn--outline {
-  color: var(--color-white);
-  border-color: rgba(255, 255, 255, 0.7);
-}
-
-.navbar .btn--outline:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--color-white);
-}
-
-.navbar .btn--primary {
-  color: var(--color-primary);
-  background: var(--color-white);
-}
-
-.navbar .btn--primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .btn {
@@ -280,7 +260,7 @@ img {
   display: block;
   width: 24px;
   height: 2.5px;
-  background: var(--color-white);
+  background: var(--color-text);
   border-radius: 2px;
 }
 
