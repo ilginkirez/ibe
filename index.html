@@ -38,13 +38,43 @@
         SeninBiletin
       </a>
 
-      <!-- Ana Menü -->
-      <ul class="navbar__menu">
-        <li><a href="index.html#categories-section">Kategoriler</a></li>
-        <li><a href="index.html#events-section">Etkinlikler</a></li>
-        <li><a href="index.html#steps-section">Nasıl Çalışır</a></li>
-        <li><a href="index.html#footer">İletişim</a></li>
-      </ul>
+        <!-- Ana Menü -->
+        <ul class="navbar__menu">
+          <li class="navbar__dropdown-wrapper">
+            <button class="navbar__dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+              Etkinlikler
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 8L2 4h8z"/></svg>
+            </button>
+            <div class="navbar__dropdown" role="menu">
+              <a href="konser.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/pexels-luan-kawee-475039735-16844549.jpg" alt="Konser" />
+                </div>
+                <span>Konser</span>
+              </a>
+              <a href="tiyatro.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/Tiyatro.jpg" alt="Tiyatro" />
+                </div>
+                <span>Tiyatro</span>
+              </a>
+              <a href="festival.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/pexels-soumya-sengupta-2156390952-34185066.jpg" alt="Festival" />
+                </div>
+                <span>Festival</span>
+              </a>
+              <a href="spor.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/Spor.jpg" alt="Spor" />
+                </div>
+                <span>Spor</span>
+              </a>
+            </div>
+          </li>
+          <li><a href="#steps-section">Nasıl Çalışır</a></li>
+          <li><a href="#footer">İletişim</a></li>
+        </ul>
 
       <!-- Kullanıcı Aksiyonları -->
       <div class="navbar__actions">
@@ -143,20 +173,14 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       KATEGORİLER — İkinci planda ama erişilebilir
-       Gestalt: Benzerlik, yakınlık, ortak bölge
-       ============================================================ -->
+  <!-- KATEGORİLER -->
   <section class="categories" id="categories-section" aria-label="Etkinlik kategorileri">
     <div class="container">
-
       <h2 class="section-title">Kategoriler</h2>
       <p class="section-subtitle">İlgi alanına göre etkinlikleri keşfet</p>
-
       <div class="categories__grid">
 
-        <!-- Konser -->
-        <a href="arama.html?q=Konser" class="category-card" aria-label="Konser etkinliklerini görüntüle">
+        <a href="konser.html" class="category-card" aria-label="Konser etkinliklerini görüntüle">
           <div class="category-card__image-wrapper">
             <img src="Assests/pexels-luan-kawee-475039735-16844549.jpg" alt="Konser">
           </div>
@@ -166,8 +190,7 @@
           </div>
         </a>
 
-        <!-- Tiyatro -->
-        <a href="arama.html?q=Tiyatro" class="category-card" aria-label="Tiyatro etkinliklerini görüntüle">
+        <a href="tiyatro.html" class="category-card" aria-label="Tiyatro etkinliklerini görüntüle">
           <div class="category-card__image-wrapper">
             <img src="Assests/Tiyatro.jpg" alt="Tiyatro">
           </div>
@@ -177,8 +200,7 @@
           </div>
         </a>
 
-        <!-- Festival -->
-        <a href="arama.html?q=Festival" class="category-card" aria-label="Festival etkinliklerini görüntüle">
+        <a href="festival.html" class="category-card" aria-label="Festival etkinliklerini görüntüle">
           <div class="category-card__image-wrapper">
             <img src="Assests/pexels-soumya-sengupta-2156390952-34185066.jpg" alt="Festival">
           </div>
@@ -188,8 +210,7 @@
           </div>
         </a>
 
-        <!-- Spor -->
-        <a href="arama.html?q=Spor" class="category-card" aria-label="Spor etkinliklerini görüntüle">
+        <a href="spor.html" class="category-card" aria-label="Spor etkinliklerini görüntüle">
           <div class="category-card__image-wrapper">
             <img src="Assests/Spor.jpg" alt="Spor">
           </div>
@@ -518,6 +539,24 @@
 
     </div>
   </footer>
+
+  <script>
+    const trigger = document.querySelector('.navbar__dropdown-trigger');
+    const dropdown = document.querySelector('.navbar__dropdown');
+    if (trigger && dropdown) {
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.toggle('open');
+        trigger.classList.toggle('active', isOpen);
+        trigger.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('click', function () {
+        dropdown.classList.remove('open');
+        trigger.classList.remove('active');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
+  </script>
 
 </body>
 
