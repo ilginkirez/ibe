@@ -8,14 +8,14 @@
 /* ---------- CSS Değişkenleri (Design Tokens) ---------- */
 :root {
   /* Ana Renkler */
-  --color-primary: #1a6ddb;
-  --color-primary-dark: #1456b0;
-  --color-primary-light: #e8f0fe;
-  --color-primary-gradient: linear-gradient(135deg, #1a6ddb 0%, #4f9cf7 100%);
+  --color-primary: #007d8a;
+  --color-primary-dark: #004d56;
+  --color-primary-light: #e0f2f1;
+  --color-primary-gradient: linear-gradient(135deg, #004d56 0%, #00bac6 100%);
 
   /* Nötr Renkler */
   --color-white: #ffffff;
-  --color-bg: #f5f7fa;
+  --color-bg: #f4f6f7;
   --color-card: #ffffff;
   --color-border: #e2e8f0;
   --color-text: #1e293b;
@@ -31,7 +31,7 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
-  --shadow-card-hover: 0 12px 36px rgba(26, 109, 219, 0.15);
+  --shadow-card-hover: 0 12px 36px rgba(0, 125, 138, 0.15);
 
   /* Geçişler */
   --transition-fast: 0.2s ease;
@@ -237,12 +237,12 @@ img {
   color: var(--color-white);
   background: var(--color-primary-gradient);
   border-radius: var(--radius-full);
-  box-shadow: 0 2px 8px rgba(26, 109, 219, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 125, 138, 0.3);
 }
 
 .btn--primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(26, 109, 219, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 125, 138, 0.4);
 }
 
 /* Mobil Menü Butonu (CSS-only hamburger) */
@@ -761,7 +761,7 @@ img {
 
 .event-card__cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(26, 109, 219, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 125, 138, 0.35);
 }
 
 .event-card__cta-arrow {
@@ -835,7 +835,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(26, 109, 219, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 125, 138, 0.25);
 }
 
 .step-card__title {
