@@ -1790,3 +1790,82 @@ input:focus-visible {
   font-size: var(--font-size-sm);
   color: var(--color-text-light);
 }
+
+/* ============================================================
+   KATEGORI BAZLI KOLTUKLAR & KORIDORLAR
+   ============================================================ */
+.seat-category-block {
+  margin-bottom: 24px;
+}
+
+.category-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-align: left;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.seat-corridor {
+  width: 24px;
+}
+
+.row-corridor {
+  height: 32px;
+}
+
+/* Kategori Renkleri - VIP */
+.seat-checkbox:not(:disabled) + .seat--vip {
+  border-color: #d4af37;
+}
+.seat-checkbox:not(:disabled):hover + .seat--vip {
+  border-color: #f1c40f;
+  transform: translateY(-2px);
+}
+.seat-checkbox:checked + .seat--vip {
+  background: #d4af37;
+  border-color: #c59b27;
+}
+.seat-checkbox:checked + .seat--vip::before,
+.seat-checkbox:checked + .seat--vip::after {
+  background: #c59b27;
+}
+
+/* Kategori Renkleri - KAT1 (Ana Turkuaz) */
+.seat-checkbox:not(:disabled) + .seat--kat1 {
+  border-color: var(--color-border);
+}
+
+/* Kategori Renkleri - KAT2 (Daha Açık Turkuaz/Gri) */
+.seat-checkbox:not(:disabled) + .seat--kat2 {
+  border-color: #94a3b8;
+}
+.seat-checkbox:checked + .seat--kat2 {
+  background: #64748b;
+  border-color: #475569;
+}
+.seat-checkbox:checked + .seat--kat2::before,
+.seat-checkbox:checked + .seat--kat2::after {
+  background: #475569;
+}
+
+/* VIP Legend Example */
+.vip-example {
+  background: #d4af37;
+  border-color: #c59b27;
+}
+.vip-example::before,
+.vip-example::after {
+  background: #c59b27;
+}
+
+/* Kat2 Legend Example */
+.kat2-example {
+  background: #64748b;
+  border-color: #475569;
+}
+.kat2-example::before,
+.kat2-example::after {
+  background: #475569;
+}
