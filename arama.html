@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <!-- ============================================================
+       SeninBiletin — Etkinlik Bileti Platformu
+       arama.html
+       Arama Sonuçları / Boş Durum (Empty State) Sayfası
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="SeninBiletin ile aradığınız konser, tiyatro, festival ve spor etkinliklerini bulun." />
+  <title>Arama Sonuçları — SeninBiletin</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Stil Dosyası -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVBAR — Üst Navigasyon Çubuğu
+       ============================================================ -->
+  <nav class="navbar" aria-label="Ana navigasyon">
+    <div class="container">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar__logo" aria-label="SeninBiletin Ana Sayfa">
+        <span class="navbar__logo-icon" aria-hidden="true">S</span>
+        SeninBiletin
+      </a>
+
+      <!-- Ana Menü -->
+      <ul class="navbar__menu">
+        <li><a href="index.html#categories-section">Kategoriler</a></li>
+        <li><a href="index.html#events-section">Etkinlikler</a></li>
+        <li><a href="index.html#steps-section">Nasıl Çalışır</a></li>
+        <li><a href="index.html#footer">İletişim</a></li>
+      </ul>
+
+      <!-- Kullanıcı Aksiyonları -->
+      <div class="navbar__actions">
+        <a href="#" class="btn btn--outline">Giriş Yap</a>
+        <a href="#" class="btn btn--primary">Üye Ol</a>
+      </div>
+
+      <!-- Mobil Menü Butonu -->
+      <button class="navbar__toggle" aria-label="Menüyü aç">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       ARAMA SONUÇLARI BÖLÜMÜ (BOŞ DURUM)
+       ============================================================ -->
+  <main class="search-results">
+    <div class="search-results__container">
+
+      <!-- Başlık -->
+      <h1 class="search-results__title">Etkinlik Bulunamadı</h1>
+
+      <!-- Geri Bildirim Mesajı -->
+      <p class="search-results__message">
+        Aradığınız kriterlere uygun güncel bir etkinlik bulunamadı. <br />
+        Yeni ve yaklaşan etkinliklerde görüşmek üzere!
+      </p>
+
+      <!-- Aksiyonlar: Anasayfa Butonu -->
+      <div class="search-results__actions">
+        <a href="index.html" class="btn btn--primary btn--large">Ana Sayfaya Dön</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ============================================================
+       FOOTER — Alt Bilgi Alanı
+       ============================================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Marka -->
+        <div class="footer__brand">
+          <div class="footer__brand-name">SeninBiletin</div>
+          <p class="footer__brand-desc">
+            Türkiye'nin en kolay etkinlik bileti platformu. Konserlerden tiyatroya, festivallerden spor müsabakalarına
+            tüm etkinliklere tek noktadan ulaşın.
+          </p>
+        </div>
+
+        <!-- Hızlı Linkler -->
+        <div>
+          <h4 class="footer__col-title">Keşfet</h4>
+          <div class="footer__links">
+            <a href="index.html#events-section">Tüm Etkinlikler</a>
+            <a href="index.html#categories-section">Konserler</a>
+            <a href="index.html#categories-section">Tiyatro</a>
+            <a href="index.html#categories-section">Festivaller</a>
+            <a href="index.html#categories-section">Spor</a>
+          </div>
+        </div>
+
+        <!-- Destek -->
+        <div>
+          <h4 class="footer__col-title">Destek</h4>
+          <div class="footer__links">
+            <a href="#">Yardım Merkezi</a>
+            <a href="#">Sıkça Sorulan Sorular</a>
+            <a href="#">İade Politikası</a>
+            <a href="#">İletişim</a>
+          </div>
+        </div>
+
+        <!-- Kurumsal -->
+        <div>
+          <h4 class="footer__col-title">Kurumsal</h4>
+          <div class="footer__links">
+            <a href="#">Hakkımızda</a>
+            <a href="#">Kariyer</a>
+            <a href="#">Gizlilik Politikası</a>
+            <a href="#">Kullanım Şartları</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Alt Çizgi -->
+      <div class="footer__bottom">
+        <span class="footer__copyright">&copy; 2026 SeninBiletin. Tüm hakları saklıdır.</span>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X">✖</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">▶</a>
+          <a href="#" class="footer__social-link" aria-label="Facebook">📘</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+
+</html>

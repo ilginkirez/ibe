@@ -1156,3 +1156,89 @@ input:focus-visible {
   white-space: nowrap;
   border: 0;
 }
+
+/* ============================================================
+   ARAMA SONUÇLARI SAYFASI
+   ============================================================ */
+.search-results {
+  padding: 80px 24px;
+  min-height: calc(100vh - 64px - 340px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+}
+
+.search-results__container {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  background: var(--color-card);
+  padding: 56px 40px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-results__query {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+}
+
+.search-results__query span {
+  font-weight: 700;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.search-results__icon {
+  font-size: 5rem;
+  margin-bottom: 24px;
+  display: inline-block;
+  animation: search-float 3s ease-in-out infinite;
+}
+
+@keyframes search-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+
+.search-results__title {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+
+.search-results__message {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-bottom: 36px;
+  line-height: 1.6;
+  max-width: 460px;
+}
+
+.search-results__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  align-items: center;
+}
+
+.search-results__search-box {
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: 12px;
+}
+
+.btn--large {
+  padding: 12px 32px;
+  font-size: var(--font-size-base);
+}
