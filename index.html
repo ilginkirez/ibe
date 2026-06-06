@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <!-- ============================================================
+       SeninBiletin — Etkinlik Bileti Platformu
+       index.html
+       Modern, HCI odaklı etkinlik bilet sayfası
+       Sadece HTML + CSS — JavaScript kullanılmamıştır
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="SeninBiletin ile konser, tiyatro, festival ve spor etkinliklerine kolayca bilet alın. Türkiye'nin modern etkinlik bileti platformu." />
+  <title>SeninBiletin — Etkinlik Bileti Platformu</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Stil Dosyası -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVBAR — Üst Navigasyon Çubuğu
+       Logo, menü linkleri ve kullanıcı aksiyonları
+       ============================================================ -->
+  <nav class="navbar" aria-label="Ana navigasyon">
+    <div class="container">
+
+      <!-- Logo -->
+      <a href="#" class="navbar__logo" aria-label=" SeninBiletin Ana Sayfa">
+        <span class="navbar__logo-icon" aria-hidden="true">S</span>
+        SeninBiletin
+
+        <!-- Ana Menü -->
+        <ul class="navbar__menu">
+          <li><a href="#categories-section">Kategoriler</a></li>
+          <li><a href="#events-section">Etkinlikler</a></li>
+          <li><a href="#steps-section">Nasıl Çalışır</a></li>
+          <li><a href="#footer">İletişim</a></li>
+        </ul>
+
+        <!-- Kullanıcı Aksiyonları -->
+        <div class="navbar__actions">
+          <a href="#" class="btn btn--outline">Giriş Yap</a>
+          <a href="#" class="btn btn--primary">Üye Ol</a>
+        </div>
+
+        <!-- Mobil Menü Butonu -->
+        <button class="navbar__toggle" aria-label="Menüyü aç">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO — Ana Arama Alanı
+       Kullanıcının tek odağı: Etkinlik aramak
+       Düşük bilişsel yük, güçlü görsel hiyerarşi
+       ============================================================ -->
+  <section class="hero" aria-label="Etkinlik ara">
+    <div class="hero__content">
+
+      <h1 class="hero__title">Unutulmaz Anlar,<br />Bir Tık Uzağında</h1>
+      <p class="hero__subtitle">Konserlerden tiyatroya, festivallerden spor müsabakalarına — hayalindeki etkinliğe hemen
+        bilet al.</p>
+
+      <!-- Arama Kutusu -->
+      <form class="search-box" action="#" method="get" role="search">
+        <span class="search-box__icon" aria-hidden="true">🔍</span>
+        <input type="search" class="search-box__input" id="search-input"
+          placeholder="Etkinlik, sanatçı veya mekan ara..." aria-label="Etkinlik, sanatçı veya mekan ara" />
+        <button type="submit" class="search-box__btn">Ara</button>
+      </form>
+
+      <!-- Popüler Aramalar -->
+      <div class="hero__tags">
+        <span>Popüler:</span>
+        <a href="#" class="hero__tag">Konserler</a>
+        <a href="#" class="hero__tag">İstanbul</a>
+        <a href="#" class="hero__tag">Tiyatro</a>
+        <a href="#" class="hero__tag">Bu Hafta</a>
+        <a href="#" class="hero__tag">Festival</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FİLTRELER — Şehir, Tarih, Kategori
+       Sticky filtre çubuğu
+       ============================================================ -->
+  <section class="filters" aria-label="Etkinlik filtreleri">
+    <div class="container">
+
+      <!-- Şehir Filtresi -->
+      <div class="filter-group">
+        <label for="filter-city" class="filter-group__label">Şehir</label>
+        <select id="filter-city" class="filter-select">
+          <option value="">Tüm Şehirler</option>
+          <option value="istanbul">İstanbul</option>
+          <option value="ankara">Ankara</option>
+          <option value="izmir">İzmir</option>
+          <option value="antalya">Antalya</option>
+          <option value="bursa">Bursa</option>
+        </select>
+      </div>
+
+      <!-- Tarih Filtresi -->
+      <div class="filter-group">
+        <label for="filter-date" class="filter-group__label">Tarih</label>
+        <input type="date" id="filter-date" class="filter-date" />
+      </div>
+
+      <!-- Kategori Filtresi -->
+      <div class="filter-group">
+        <label for="filter-category" class="filter-group__label">Kategori</label>
+        <select id="filter-category" class="filter-select">
+          <option value="">Tüm Kategoriler</option>
+          <option value="konser">Konser</option>
+          <option value="tiyatro">Tiyatro</option>
+          <option value="festival">Festival</option>
+          <option value="spor">Spor</option>
+          <option value="aile">Aile</option>
+        </select>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       KATEGORİLER — İkinci planda ama erişilebilir
+       Gestalt: Benzerlik, yakınlık, ortak bölge
+       ============================================================ -->
+  <section class="categories" id="categories-section" aria-label="Etkinlik kategorileri">
+    <div class="container">
+
+      <h2 class="section-title">Kategoriler</h2>
+      <p class="section-subtitle">İlgi alanına göre etkinlikleri keşfet</p>
+
+      <div class="categories__grid">
+
+        <!-- Konser -->
+        <a href="#" class="category-card category-card--konser" aria-label="Konser etkinliklerini görüntüle">
+          <div class="category-card__icon" aria-hidden="true">🎵</div>
+          <span class="category-card__name">Konser</span>
+          <span class="category-card__count">124 etkinlik</span>
+        </a>
+
+        <!-- Tiyatro -->
+        <a href="#" class="category-card category-card--tiyatro" aria-label="Tiyatro etkinliklerini görüntüle">
+          <div class="category-card__icon" aria-hidden="true">🎭</div>
+          <span class="category-card__name">Tiyatro</span>
+          <span class="category-card__count">87 etkinlik</span>
+        </a>
+
+        <!-- Festival -->
+        <a href="#" class="category-card category-card--festival" aria-label="Festival etkinliklerini görüntüle">
+          <div class="category-card__icon" aria-hidden="true">🎪</div>
+          <span class="category-card__name">Festival</span>
+          <span class="category-card__count">42 etkinlik</span>
+        </a>
+
+        <!-- Spor -->
+        <a href="#" class="category-card category-card--spor" aria-label="Spor etkinliklerini görüntüle">
+          <div class="category-card__icon" aria-hidden="true">⚽</div>
+          <span class="category-card__name">Spor</span>
+          <span class="category-card__count">56 etkinlik</span>
+        </a>
+
+        <!-- Aile -->
+        <a href="#" class="category-card category-card--aile" aria-label="Aile etkinliklerini görüntüle">
+          <div class="category-card__icon" aria-hidden="true">👨‍👩‍👧‍👦</div>
+          <span class="category-card__name">Aile</span>
+          <span class="category-card__count">38 etkinlik</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BİLET ALMA ADIMLARI — 3 Basit Adım
+       Kullanıcı akışını netleştiren bölüm
+       Kategorilerden sonra, etkinliklerden önce: kullanıcı süreci anlar
+       ============================================================ -->
+  <section class="steps" id="steps-section" aria-label="Bilet alma adımları">
+    <div class="container">
+
+      <h2 class="section-title">Nasıl Bilet Alınır?</h2>
+      <p class="section-subtitle">Sadece 3 kolay adımda biletini al</p>
+
+      <div class="steps__grid">
+
+        <!-- Adım 1 -->
+        <div class="step-card">
+          <div class="step-card__number" aria-hidden="true">1</div>
+          <h3 class="step-card__title">Etkinlik Seç</h3>
+          <p class="step-card__desc">Arama veya kategorilerden ilgi alanına uygun etkinliği bul.</p>
+        </div>
+
+        <!-- Adım 2 -->
+        <div class="step-card">
+          <div class="step-card__number" aria-hidden="true">2</div>
+          <h3 class="step-card__title">Koltuk &amp; Bilet Seç</h3>
+          <p class="step-card__desc">Uygun tarih, koltuk ve bilet türünü seçerek devam et.</p>
+        </div>
+
+        <!-- Adım 3 -->
+        <div class="step-card">
+          <div class="step-card__number" aria-hidden="true">3</div>
+          <h3 class="step-card__title">Sepeti Onayla</h3>
+          <p class="step-card__desc">Güvenli ödeme ile biletini tamamla, e-biletini anında al.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       POPÜLER ETKİNLİKLER — Etkinlik Kartları Grid
+       Gestalt: Benzerlik (tüm kartlar aynı tasarım)
+       Affordance: Her kartta görünür "Bilet Al" butonu
+       ============================================================ -->
+  <section class="events" id="events-section" aria-label="Popüler etkinlikler">
+    <div class="container">
+
+      <h2 class="section-title">Popüler Etkinlikler</h2>
+      <p class="section-subtitle">Kaçırmamanız gereken etkinlikler</p>
+
+      <div class="events__grid">
+
+        <!-- Etkinlik Kartı 1 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--1">
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+            <div class="event-card__image-deco" aria-hidden="true">🎸</div>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Konser</span>
+            <h3 class="event-card__title">Yaz Konserleri: Akustik Gece</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>15 Temmuz 2026, Salı</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Harbiye Açıkhava, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺250</span>
+            </div>
+            <a href="#" class="event-card__cta" aria-label="Yaz Konserleri için bilet al">
+              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Etkinlik Kartı 2 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--2">
+            <span class="event-card__badge event-card__badge--yakin">Son 3 Gün</span>
+            <div class="event-card__image-deco" aria-hidden="true">🎭</div>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Tiyatro</span>
+            <h3 class="event-card__title">Hamlet — Devlet Tiyatrosu</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>8 Temmuz 2026, Çarşamba</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>AKM Tiyatro Salonu, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺180</span>
+            </div>
+            <a href="#" class="event-card__cta" aria-label="Hamlet için bilet al">
+              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Etkinlik Kartı 3 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--3">
+            <span class="event-card__badge event-card__badge--yeni">Yeni</span>
+            <div class="event-card__image-deco" aria-hidden="true">🎪</div>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Festival</span>
+            <h3 class="event-card__title">Zeytinli Rock Festivali 2026</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>22–25 Ağustos 2026</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Zeytinli, Balıkesir</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺450</span>
+            </div>
+            <a href="#" class="event-card__cta" aria-label="Zeytinli Rock Festivali için bilet al">
+              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Etkinlik Kartı 4 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--4">
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+            <div class="event-card__image-deco" aria-hidden="true">⚽</div>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Spor</span>
+            <h3 class="event-card__title">Süper Lig: Fenerbahçe vs Galatasaray</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>3 Ağustos 2026, Pazar</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Ülker Stadyumu, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺350</span>
+            </div>
+            <a href="#" class="event-card__cta" aria-label="Fenerbahçe vs Galatasaray için bilet al">
+              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Etkinlik Kartı 5 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--5">
+            <span class="event-card__badge event-card__badge--yeni">Yeni</span>
+            <div class="event-card__image-deco" aria-hidden="true">🎵</div>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Konser</span>
+            <h3 class="event-card__title">Caz Festivali: Norah Jones Live</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>29 Temmuz 2026, Çarşamba</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>CRR Konser Salonu, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺500</span>
+            </div>
+            <a href="#" class="event-card__cta" aria-label="Norah Jones Live için bilet al">
+              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Etkinlik Kartı 6 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--6">
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+            <div class="event-card__image-deco" aria-hidden="true">👨‍👩‍👧</div>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Aile</span>
+            <h3 class="event-card__title">Çocuk Müzikali: Kırmızı Başlıklı Kız</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>12 Temmuz 2026, Cumartesi</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Zorlu PSM, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺120</span>
+            </div>
+            <a href="#" class="event-card__cta" aria-label="Kırmızı Başlıklı Kız için bilet al">
+              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Tüm Etkinlikleri Gör -->
+      <div class="events__more">
+        <a href="#" class="btn btn--outline btn--large">Tüm Etkinlikleri Gör</a>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- ============================================================
+       FOOTER — Alt Bilgi Alanı
+       ============================================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Marka -->
+        <div class="footer__brand">
+          <div class="footer__brand-name">SeninBiletin</div>
+          <p class="footer__brand-desc">
+            Türkiye'nin en kolay etkinlik bileti platformu. Konserlerden tiyatroya, festivallerden spor müsabakalarına
+            tüm etkinliklere tek noktadan ulaşın.
+          </p>
+        </div>
+
+        <!-- Hızlı Linkler -->
+        <div>
+          <h4 class="footer__col-title">Keşfet</h4>
+          <div class="footer__links">
+            <a href="#">Tüm Etkinlikler</a>
+            <a href="#">Konserler</a>
+            <a href="#">Tiyatro</a>
+            <a href="#">Festivaller</a>
+            <a href="#">Spor</a>
+          </div>
+        </div>
+
+        <!-- Destek -->
+        <div>
+          <h4 class="footer__col-title">Destek</h4>
+          <div class="footer__links">
+            <a href="#">Yardım Merkezi</a>
+            <a href="#">Sıkça Sorulan Sorular</a>
+            <a href="#">İade Politikası</a>
+            <a href="#">İletişim</a>
+          </div>
+        </div>
+
+        <!-- Kurumsal -->
+        <div>
+          <h4 class="footer__col-title">Kurumsal</h4>
+          <div class="footer__links">
+            <a href="#">Hakkımızda</a>
+            <a href="#">Kariyer</a>
+            <a href="#">Gizlilik Politikası</a>
+            <a href="#">Kullanım Şartları</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Alt Çizgi -->
+      <div class="footer__bottom">
+        <span class="footer__copyright">&copy; 2026 SeninBiletin. Tüm hakları saklıdır.</span>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X">✖</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">▶</a>
+          <a href="#" class="footer__social-link" aria-label="Facebook">📘</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+
+</html>
