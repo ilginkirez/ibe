@@ -1547,3 +1547,246 @@ input:focus-visible {
 .auth-footer-text a:hover {
   text-decoration: underline;
 }
+
+/* ============================================================
+   TICKET PAGE
+   ============================================================ */
+.ticket-page {
+  background: var(--color-bg);
+}
+
+.ticket-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ticket-header {
+  display: flex;
+  gap: 32px;
+  background: var(--color-white);
+  padding: 32px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 40px;
+  align-items: center;
+}
+
+.ticket-header__image {
+  flex-shrink: 0;
+  width: 240px;
+  height: 240px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.ticket-header__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ticket-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 8px 0 16px;
+  letter-spacing: -0.5px;
+}
+
+.ticket-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ticket-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+}
+
+/* Koltuk Seçimi (CSS-Only) */
+.seat-selection {
+  background: var(--color-white);
+  padding: 48px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.seat-selection h2 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: 8px;
+}
+
+.seat-selection-subtitle {
+  color: var(--color-text-secondary);
+  margin-bottom: 40px;
+}
+
+.seat-map-container {
+  display: inline-block;
+  perspective: 1000px;
+  margin-bottom: 40px;
+}
+
+.stage {
+  background: var(--color-primary-gradient);
+  color: var(--color-white);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50% 50% 0 0 / 20px 20px 0 0;
+  margin-bottom: 60px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  box-shadow: 0 10px 20px rgba(0, 125, 138, 0.2);
+  transform: rotateX(-20deg);
+}
+
+.seat-map {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.seat-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* Gizli Checkbox'lar */
+.seat-checkbox {
+  display: none;
+}
+
+/* Koltuk Görünümü (Label) */
+.seat {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 6px 6px 12px 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.seat::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: -4px;
+  width: 4px;
+  height: 16px;
+  background: var(--color-border);
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+}
+
+.seat::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: -4px;
+  width: 4px;
+  height: 16px;
+  background: var(--color-border);
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+}
+
+.seat:hover {
+  border-color: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+
+/* Seçili Koltuk State */
+.seat-checkbox:checked + .seat {
+  background: var(--color-primary);
+  border-color: var(--color-primary-dark);
+}
+
+.seat-checkbox:checked + .seat::before,
+.seat-checkbox:checked + .seat::after {
+  background: var(--color-primary-dark);
+}
+
+/* Dolu Koltuk State (Disabled Checkbox) */
+.seat-checkbox:disabled + .seat {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.seat-checkbox:disabled + .seat::before,
+.seat-checkbox:disabled + .seat::after {
+  background: #cbd5e1;
+}
+
+.seat-checkbox:disabled + .seat:hover {
+  transform: none;
+}
+
+/* Legend */
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.seat-example {
+  cursor: default;
+  pointer-events: none;
+}
+
+.selected-example {
+  background: var(--color-primary);
+  border-color: var(--color-primary-dark);
+}
+
+.selected-example::before,
+.selected-example::after {
+  background: var(--color-primary-dark);
+}
+
+.occupied-example {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+  opacity: 0.6;
+}
+.occupied-example::before,
+.occupied-example::after {
+  background: #cbd5e1;
+}
+
+.ticket-actions {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.ticket-notice {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}
