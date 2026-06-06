@@ -12,8 +12,8 @@
   <!-- Navbar -->
   <nav class="navbar" aria-label="Ana navigasyon">
     <div class="container">
-      <a href="index.html" class="navbar__logo" aria-label=" SeninBiletin Ana Sayfa">
-        <span class="navbar__logo-icon" aria-hidden="true">S</span>
+      <a href="index.html" class="navbar__logo" aria-label="SeninBiletin Ana Sayfa">
+        <img src="gorseller/logo.png" alt="SeninBiletin Logo" class="navbar__logo-img" />
         SeninBiletin
       </a>
       <div class="navbar__actions">
@@ -449,9 +449,91 @@
       </div>
 
     
-      <!-- JavaScript for Dynamic Pricing -->
+      <!-- JavaScript for Dynamic Event Loading & Pricing -->
       <script>
+        const eventData = {
+          "melike-sahin": {
+            title: "Melike Şahin",
+            category: "Konser",
+            image: "gorseller/melike sahin.webp",
+            date: "15 Temmuz 2026, Salı — 21:00",
+            venue: "Harbiye Cemil Topuzlu Açıkhava Tiyatrosu",
+            prices: { vip: 750, kat1: 400, kat2: 250 }
+          },
+          "suc-ve-ceza": {
+            title: "Suç ve Ceza",
+            category: "Tiyatro",
+            image: "gorseller/suc-ve-ceza.jpg",
+            date: "8 Temmuz 2026, Çarşamba — 20:30",
+            venue: "AKM Tiyatro Salonu",
+            prices: { vip: 380, kat1: 280, kat2: 180 }
+          },
+          "zamna": {
+            title: "ZAMNA x MO Homecoming 2026",
+            category: "Festival",
+            image: "gorseller/zamna-x-mo-homecoming-2026-85785.jpg",
+            date: "29–30 Ağustos 2026",
+            venue: "Life Park",
+            prices: { vip: 750, kat1: 400, kat2: 250 }
+          },
+          "vakifbank": {
+            title: "Vakıfbank - Eczacıbaşı",
+            category: "Spor",
+            image: "gorseller/vakifban-voleybol.jpg",
+            date: "12 Ekim 2026, Pazartesi — 19:00",
+            venue: "TVF Burhan Felek Voleybol Salonu",
+            prices: { vip: 400, kat1: 250, kat2: 150 }
+          },
+          "aleyna-tilki": {
+            title: "Aleyna Tilki",
+            category: "Konser",
+            image: "gorseller/aleyna-tilki.webp",
+            date: "20 Ağustos 2026, Perşembe — 21:00",
+            venue: "KüçükÇiftlik Park",
+            prices: { vip: 800, kat1: 500, kat2: 300 }
+          },
+          "rapunzel": {
+            title: "Rapunzel — Çocuk Oyunu",
+            category: "Aile",
+            image: "gorseller/rapunzel-degirmen-20231221177186908de0efd714fe294d283cdde132c41.jpg",
+            date: "12 Temmuz 2026, Cumartesi — 14:00",
+            venue: "Zorlu PSM",
+            prices: { vip: 450, kat1: 150, kat2: 120 }
+          }
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
+          const params = new URLSearchParams(window.location.search);
+          const eventKey = params.get('event') || 'melike-sahin';
+          const data = eventData[eventKey] || eventData['melike-sahin'];
+
+          // Dynamic DOM updates
+          document.title = `Bilet Al - ${data.title} | SeninBiletin`;
+          document.querySelector('.ticket-title').innerText = data.title;
+          document.querySelector('.event-card__category').innerText = data.category;
+          document.querySelector('.ticket-header__image img').src = data.image;
+          document.querySelector('.ticket-header__image img').alt = data.title;
+
+          const metaItems = document.querySelectorAll('.ticket-meta-item');
+          if (metaItems.length >= 3) {
+            metaItems[0].innerHTML = `<span class="ticket-meta-icon">📅</span> ${data.date}`;
+            metaItems[1].innerHTML = `<span class="ticket-meta-icon">📍</span> ${data.venue}`;
+            metaItems[2].innerHTML = `<span class="ticket-meta-icon">💰</span> ₺${data.prices.kat2} / Bilet`;
+          }
+
+          // Update Seating Pricing
+          const catBlocks = document.querySelectorAll('.seat-category-block');
+          if (catBlocks.length >= 3) {
+            catBlocks[0].querySelector('.category-title').innerText = `VIP - ${data.prices.vip}₺`;
+            catBlocks[0].querySelectorAll('.seat-checkbox').forEach(cb => cb.setAttribute('data-price', data.prices.vip));
+
+            catBlocks[1].querySelector('.category-title').innerText = `KAT1 - ${data.prices.kat1}₺`;
+            catBlocks[1].querySelectorAll('.seat-checkbox').forEach(cb => cb.setAttribute('data-price', data.prices.kat1));
+
+            catBlocks[2].querySelector('.category-title').innerText = `KAT2 - ${data.prices.kat2}₺`;
+            catBlocks[2].querySelectorAll('.seat-checkbox').forEach(cb => cb.setAttribute('data-price', data.prices.kat2));
+          }
+
           const checkboxes = document.querySelectorAll('.seat-checkbox:not(:disabled)');
           const totalPriceEl = document.getElementById('total-price');
           const totalSeatsEl = document.getElementById('total-seats');
