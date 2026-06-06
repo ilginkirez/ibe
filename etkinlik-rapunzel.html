@@ -1,87 +1,926 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
+  <!-- ============================================================
+       SeninBiletin — Etkinlik Bileti Platformu
+       etkinlik-rapunzel.html
+       Biletinial tarzı premium çocuk tiyatrosu detay sayfası
+       ============================================================ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Rapunzel Çocuk Oyunu biletleri. 12 Temmuz 2026, Zorlu PSM, İstanbul." />
   <title>Rapunzel — Çocuk Oyunu | SeninBiletin</title>
+
+  <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Stil Dosyası -->
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Biletinial Style Override & Custom Design System */
+    :root {
+      --biletinial-bg: #f8fafc;
+      --biletinial-card-bg: #ffffff;
+      --biletinial-text-main: #1e293b;
+      --biletinial-text-muted: #64748b;
+      --biletinial-dark-hero: #0f172a;
+      --biletinial-primary-green: #10b981;
+      --biletinial-primary-green-hover: #059669;
+      --biletinial-accent-blue: #007d8a;
+    }
+
+    body {
+      background-color: var(--biletinial-bg);
+      color: var(--biletinial-text-main);
+    }
+
+    /* Hero Section */
+    .biletinial-hero {
+      background-color: var(--biletinial-dark-hero);
+      color: #ffffff;
+      position: relative;
+      min-height: 460px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 40px 0;
+    }
+
+    .biletinial-hero__container {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .biletinial-hero__content {
+      width: 55%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .biletinial-hero__badges {
+      display: flex;
+      gap: 8px;
+    }
+
+    .biletinial-hero__badge {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .biletinial-hero__title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      color: #ffffff;
+    }
+
+    .biletinial-hero__subtitle {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+      max-width: 90%;
+    }
+
+    .biletinial-hero__rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    .biletinial-hero__rating-star {
+      color: #f59e0b;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .biletinial-hero__rating-text {
+      color: #cbd5e1;
+    }
+
+    .biletinial-hero__rating-link {
+      color: #38bdf8;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .biletinial-hero__meta {
+      font-size: 0.95rem;
+      color: #94a3b8;
+    }
+
+    .biletinial-hero__meta span {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .biletinial-hero__btn {
+      align-self: flex-start;
+      background-color: var(--biletinial-primary-green);
+      color: #ffffff;
+      padding: 14px 40px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .biletinial-hero__btn:hover {
+      background-color: var(--biletinial-primary-green-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+    }
+
+    .biletinial-hero__image-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .biletinial-hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .biletinial-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--biletinial-dark-hero) 45%, rgba(15, 23, 42, 0.8) 60%, rgba(15, 23, 42, 0) 100%),
+                  linear-gradient(to top, var(--biletinial-dark-hero) 5%, rgba(15, 23, 42, 0) 30%);
+      pointer-events: none;
+    }
+
+    /* Tabs Bar */
+    .biletinial-tabs {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 64px;
+      z-index: 10;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .biletinial-tabs__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 32px;
+      height: 56px;
+    }
+
+    .biletinial-tabs__btn {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--biletinial-text-muted);
+      position: relative;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .biletinial-tabs__btn:hover {
+      color: var(--biletinial-text-main);
+    }
+
+    .biletinial-tabs__btn.active {
+      color: var(--biletinial-text-main);
+      font-weight: 700;
+    }
+
+    .biletinial-tabs__btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 5px;
+      height: 5px;
+      background-color: var(--biletinial-text-main);
+      border-radius: 50%;
+    }
+
+    /* Main Grid Layout */
+    .biletinial-main {
+      max-width: 1200px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 32px;
+    }
+
+    /* Content Cards */
+    .biletinial-card {
+      background-color: var(--biletinial-card-bg);
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 36px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .biletinial-section {
+      scroll-margin-top: 140px;
+    }
+
+    .biletinial-section__heading {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--biletinial-text-main);
+      margin-bottom: 16px;
+    }
+
+    .biletinial-section p {
+      color: #475569;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* Description list */
+    .biletinial-details-list {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 16px 24px;
+      padding: 24px 0;
+      border-top: 1px dashed #e2e8f0;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .biletinial-details-label {
+      font-weight: 700;
+      color: var(--biletinial-text-muted);
+    }
+
+    .biletinial-details-value {
+      color: var(--biletinial-text-main);
+      font-weight: 500;
+    }
+
+    /* Kadro / Cast Section */
+    .biletinial-cast {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .biletinial-cast__list {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .biletinial-cast__member {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .biletinial-cast__avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 2px solid #e2e8f0;
+    }
+
+    .biletinial-cast__name {
+      font-weight: 600;
+      color: var(--biletinial-text-main);
+      font-size: 0.95rem;
+    }
+
+    .biletinial-cast__more {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--biletinial-accent-blue);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    /* Warning / Alert Box */
+    .biletinial-alert {
+      background-color: #fff5f5;
+      border: 1px solid #fee2e2;
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #e11d48;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .biletinial-alert__icon {
+      font-size: 1.25rem;
+    }
+
+    /* Right Sidebar: Poster Card & Booking widget */
+    .biletinial-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .biletinial-poster-card {
+      background-color: var(--biletinial-card-bg);
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    }
+
+    .biletinial-poster-card__img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 8px;
+    }
+
+    .biletinial-booking {
+      background-color: var(--biletinial-card-bg);
+      border-radius: 12px;
+      border: 1.5px solid #e2e8f0;
+      padding: 28px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 136px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .biletinial-booking__title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--biletinial-text-main);
+    }
+
+    .biletinial-booking__price-box {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .biletinial-booking__price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--biletinial-accent-blue);
+    }
+
+    .biletinial-booking__price-note {
+      font-size: 0.85rem;
+      color: var(--biletinial-text-muted);
+    }
+
+    .biletinial-booking__select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--biletinial-text-main);
+      background-color: #ffffff;
+      cursor: pointer;
+    }
+
+    .biletinial-booking__select:focus {
+      border-color: var(--biletinial-accent-blue);
+      outline: none;
+    }
+
+    .biletinial-booking__btn {
+      background-color: var(--biletinial-accent-blue);
+      color: #ffffff;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 125, 138, 0.25);
+      cursor: pointer;
+      font-size: 1rem;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .biletinial-booking__btn:hover {
+      background-color: #005f69;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0, 125, 138, 0.35);
+    }
+
+    /* Ticket Cities & Pricing Section */
+    .biletinial-tickets {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      scroll-margin-top: 140px;
+    }
+
+    .biletinial-tickets__title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--biletinial-text-main);
+      margin-bottom: 8px;
+    }
+
+    .biletinial-tickets__subtitle {
+      font-size: 1rem;
+      color: var(--biletinial-text-muted);
+      margin-bottom: 24px;
+    }
+
+    .biletinial-city-group {
+      background-color: var(--biletinial-card-bg);
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    }
+
+    .biletinial-city-header {
+      background-color: #f1f5f9;
+      padding: 16px 24px;
+      font-weight: 700;
+      color: var(--biletinial-text-main);
+      font-size: 1.1rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .biletinial-ticket-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .biletinial-ticket-row:last-child {
+      border-bottom: none;
+    }
+
+    .biletinial-ticket-details {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .biletinial-ticket-date {
+      font-weight: 700;
+      color: var(--biletinial-accent-blue);
+      font-size: 1rem;
+    }
+
+    .biletinial-ticket-venue {
+      font-weight: 600;
+      color: var(--biletinial-text-main);
+      font-size: 1.05rem;
+    }
+
+    .biletinial-ticket-city {
+      color: var(--biletinial-text-muted);
+      font-size: 0.9rem;
+    }
+
+    .biletinial-ticket-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .biletinial-ticket-price-box {
+      text-align: right;
+    }
+
+    .biletinial-ticket-price-label {
+      font-size: 0.75rem;
+      color: var(--biletinial-text-muted);
+      display: block;
+    }
+
+    .biletinial-ticket-price-val {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--biletinial-text-main);
+    }
+
+    .biletinial-ticket-row-btn {
+      background-color: var(--biletinial-primary-green);
+      color: #ffffff;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+    }
+
+    .biletinial-ticket-row-btn:hover {
+      background-color: var(--biletinial-primary-green-hover);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .biletinial-main {
+        grid-template-columns: 1fr;
+      }
+
+      .biletinial-sidebar {
+        flex-direction: column-reverse;
+      }
+
+      .biletinial-booking {
+        position: static;
+      }
+
+      .biletinial-poster-card {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .biletinial-hero {
+        min-height: auto;
+        padding: 40px 0;
+      }
+
+      .biletinial-hero__container {
+        flex-direction: column-reverse;
+      }
+
+      .biletinial-hero__content {
+        width: 100%;
+        margin-top: 24px;
+      }
+
+      .biletinial-hero__image-wrapper {
+        position: static;
+        width: 100%;
+        height: 240px;
+        border-radius: 8px;
+      }
+
+      .biletinial-hero__overlay {
+        display: none;
+      }
+
+      .biletinial-hero__title {
+        font-size: 2.2rem;
+      }
+
+      .biletinial-tabs__container {
+        gap: 16px;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      .biletinial-tabs__btn {
+        font-size: 0.9rem;
+      }
+
+      .biletinial-ticket-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .biletinial-ticket-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
+  <!-- NAVBAR -->
   <nav class="navbar" aria-label="Ana navigasyon">
     <div class="container">
-      <a href="index.html" class="navbar__logo" aria-label="SeninBiletin Ana Sayfa"><img src="gorseller/logo.png" alt="SeninBiletin Logo" class="navbar__logo-img" /> SeninBiletin</a>
+      <a href="index.html" class="navbar__logo" aria-label="SeninBiletin Ana Sayfa">
+        <img src="gorseller/logo.png" alt="SeninBiletin Logo" class="navbar__logo-img" /> SeninBiletin
+      </a>
       <ul class="navbar__menu">
         <li><a href="index.html#categories-section">Kategoriler</a></li>
         <li><a href="index.html#events-section">Etkinlikler</a></li>
         <li><a href="index.html#steps-section">Nasıl Çalışır</a></li>
         <li><a href="index.html#footer">İletişim</a></li>
       </ul>
-      <div class="navbar__actions"><a href="login.html" class="btn btn--outline">Giriş Yap</a><a href="register.html" class="btn btn--primary">Üye Ol</a></div>
+      <div class="navbar__actions">
+        <a href="login.html" class="btn btn--outline">Giriş Yap</a>
+        <a href="register.html" class="btn btn--primary">Üye Ol</a>
+      </div>
       <button class="navbar__toggle" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <section class="detail-hero">
-    <img src="gorseller/rapunzel-degirmen-20231221177186908de0efd714fe294d283cdde132c41.jpg" alt="Rapunzel — Çocuk Oyunu" class="detail-hero__img" />
-    <div class="detail-hero__overlay"></div>
-    <div class="detail-hero__content">
-      <div class="container">
-        <span class="detail-hero__badge">Aile</span>
-        <h1 class="detail-hero__title">Rapunzel — Çocuk Oyunu</h1>
-      </div>
-    </div>
-  </section>
+  <div class="biletinial-wrapper">
+    <!-- ============================================================
+         HERO SECTION — Dark theme with image fading on right
+         ============================================================ -->
+    <section class="biletinial-hero">
+      <div class="biletinial-hero__container">
+        <div class="biletinial-hero__content">
+          <div class="biletinial-hero__badges">
+            <span class="biletinial-hero__badge">Aile</span>
+            <span class="biletinial-hero__badge">Çocuk Oyunu</span>
+          </div>
 
-  <main class="detail-main">
-    <div class="container">
-      <div class="detail-info">
-        <div class="detail-meta">
-          <div class="detail-meta__item"><span class="detail-meta__icon">📅</span><div><div class="detail-meta__label">Tarih</div><div class="detail-meta__value">12 Temmuz 2026, Cumartesi — 14:00</div></div></div>
-          <div class="detail-meta__item"><span class="detail-meta__icon">📍</span><div><div class="detail-meta__label">Mekan</div><div class="detail-meta__value">Zorlu PSM, İstanbul</div></div></div>
-          <div class="detail-meta__item"><span class="detail-meta__icon">⏱️</span><div><div class="detail-meta__label">Süre</div><div class="detail-meta__value">1 saat 15 dakika (arasız)</div></div></div>
-        </div>
-        <div class="detail-section">
-          <h2 class="detail-section__title">Etkinlik Hakkında</h2>
-          <p>Grimm Kardeşlerin sevilen masalı "Rapunzel", renkli kostümler, canlı müzik ve eğlenceli koreografilerle sahneye taşınıyor! Çocuklarınıza unutulmaz bir tiyatro deneyimi yaşatacak bu interaktif oyunda, küçük izleyiciler de sahneye davet edilerek hikayenin bir parçası oluyor. 3-10 yaş arası çocuklar ve aileleri için ideal bir hafta sonu etkinliği.</p>
-        </div>
-        <div class="detail-section">
-          <h2 class="detail-section__title">Mekan Bilgisi</h2>
-          <p>Zorlu PSM (Performans Sanatları Merkezi), Zorlu Center AVM içinde Beşiktaş'ta yer almaktadır. Metro: Gayrettepe istasyonundan ücretsiz servis. Otopark mevcuttur.</p>
+          <h1 class="biletinial-hero__title">Rapunzel</h1>
+
+          <p class="biletinial-hero__subtitle">
+            Grimm Kardeşlerin ünlü klasiği "Rapunzel", rengarenk danslar, şarkılar ve eğlenceli tiyatro gösterisiyle çocuklarla buluşuyor!
+          </p>
+
+          <div class="biletinial-hero__rating">
+            <span class="biletinial-hero__rating-star">★ 4.8</span>
+            <span class="biletinial-hero__rating-text">İzleyici Puanı</span>
+            <span class="biletinial-hero__rating-text">•</span>
+            <span class="biletinial-hero__rating-link" onclick="scrollToSection('detay')">76 Yorum</span>
+          </div>
+
+          <div class="biletinial-hero__meta">
+            Sanatçılar: <span>Tiyatro Oyuncuları</span>
+          </div>
+
+          <button class="biletinial-hero__btn" onclick="scrollToSection('biletler')">Biletini Al</button>
         </div>
       </div>
-      <aside class="detail-ticket">
-        <h3 class="detail-ticket__title">Bilet Seçimi</h3>
-        <div class="detail-ticket__price-row"><span class="detail-ticket__price">₺120</span><span class="detail-ticket__price-note">'den başlayan fiyatlarla</span></div>
-        <select class="detail-ticket__select" aria-label="Bilet türü seçin">
-          <option>Çocuk — ₺120</option>
-          <option>Yetişkin — ₺150</option>
-          <option>Aile Paketi (2+2) — ₺450</option>
-        </select>
-        <select class="detail-ticket__select" aria-label="Kişi sayısı seçin"><option>1 Kişi</option><option>2 Kişi</option><option>3 Kişi</option><option>4 Kişi</option></select>
-        <button class="btn btn--primary detail-ticket__btn">Bilet Al</button>
-        <div class="detail-ticket__info">
-          <div class="detail-ticket__info-item"><span class="detail-ticket__info-icon">🔒</span> Güvenli ödeme altyapısı</div>
-          <div class="detail-ticket__info-item"><span class="detail-ticket__info-icon">📱</span> E-bilet anında cebinizde</div>
-          <div class="detail-ticket__info-item"><span class="detail-ticket__info-icon">👶</span> 3 yaş ve altı ücretsiz</div>
-        </div>
-      </aside>
-    </div>
-  </main>
 
+      <div class="biletinial-hero__image-wrapper">
+        <img src="gorseller/rapunzel-degirmen-20231221177186908de0efd714fe294d283cdde132c41.jpg" alt="Rapunzel" class="biletinial-hero__img" />
+        <div class="biletinial-hero__overlay"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STICKY TABS BAR
+         ============================================================ -->
+    <nav class="biletinial-tabs" aria-label="Etkinlik menüsü">
+      <div class="biletinial-tabs__container">
+        <a class="biletinial-tabs__btn active" onclick="scrollToSection('detay', this)">Detay</a>
+        <a class="biletinial-tabs__btn" onclick="scrollToSection('kadro', this)">Kadro</a>
+        <a class="biletinial-tabs__btn" onclick="scrollToSection('biletler', this)">Biletler</a>
+        <a class="biletinial-tabs__btn" onclick="scrollToSection('kurallar', this)">Etkinlik Kuralları</a>
+      </div>
+    </nav>
+
+    <!-- ============================================================
+         MAIN CONTENT GRID
+         ============================================================ -->
+    <main class="biletinial-main">
+
+      <!-- Left Side: Content Card -->
+      <div class="biletinial-card">
+
+        <!-- Detay Section -->
+        <section id="detay" class="biletinial-section">
+          <h2 class="biletinial-section__heading">Rapunzel — Çocuk Oyunu</h2>
+          <p>
+            Grimm Kardeşlerin sevilen masalı "Rapunzel", renkli kostümler, canlı müzik ve eğlenceli koreografilerle sahneye taşınıyor! Çocuklarınıza unutulmaz bir tiyatro deneyimi yaşatacak bu interaktif oyunda, küçük izleyiciler de sahneye davet edilerek hikayenin bir parçası oluyor. 3-10 yaş arası çocuklar ve aileleri için ideal bir hafta sonu etkinliği.
+          </p>
+        </section>
+
+        <!-- Technical Details -->
+        <div class="biletinial-details-list">
+          <div class="biletinial-details-label">Etkinlik Türü</div>
+          <div class="biletinial-details-value">Tiyatro, Çocuk Oyunu</div>
+
+          <div class="biletinial-details-label">Yaş Sınırı</div>
+          <div class="biletinial-details-value">3 Yaş ve Üzeri</div>
+        </div>
+
+        <!-- Kadro Section -->
+        <section id="kadro" class="biletinial-section biletinial-cast">
+          <h2 class="biletinial-section__heading">Kadro</h2>
+          <div class="biletinial-cast__list">
+            <div class="biletinial-cast__member">
+              <img src="gorseller/rapunzel-degirmen-20231221177186908de0efd714fe294d283cdde132c41.jpg" alt="Tiyatro Oyuncuları" class="biletinial-cast__avatar" />
+              <span class="biletinial-cast__name">Tiyatro Oyuncuları</span>
+            </div>
+            <div class="biletinial-cast__more">
+              <span>Tümünü Gör</span> <span>&gt;</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Rules Info Box -->
+        <div class="biletinial-alert">
+          <span class="biletinial-alert__icon">⚠️</span>
+          <span>Etkinliğe gitmeden önce kuralları okuyun.</span>
+        </div>
+
+        <!-- Kurallar Section -->
+        <section id="kurallar" class="biletinial-section">
+          <h2 class="biletinial-section__heading">Etkinlik Kuralları</h2>
+          <p>
+            • Etkinlik 3 yaş ve üzeri izleyiciler içindir. 3 yaş ve altı çocuklar alana alınmayacaktır.<br />
+            • Gösteri süresince çocukların sorumluluğu velilerindedir.<br />
+            • Oyun başladıktan sonra salona giriş yapılamaz.<br />
+            • Salon içinde yiyecek ve içecek tüketilmesi yasaktır.<br />
+            • İade ve değişiklik talepleri gösteri saatinden 48 saat öncesine kadar iletilmelidir.
+          </p>
+        </section>
+
+      </div>
+
+      <!-- Right Side: Sidebar with Poster Thumbnail & Sticky Booking Form -->
+      <div class="biletinial-sidebar">
+
+        <!-- Rounded Poster Card -->
+        <div class="biletinial-poster-card">
+          <img src="gorseller/rapunzel-degirmen-20231221177186908de0efd714fe294d283cdde132c41.jpg" alt="Rapunzel Afişi" class="biletinial-poster-card__img" />
+        </div>
+
+        <!-- Sticky Booking Widget -->
+        <aside class="biletinial-booking">
+          <h3 class="biletinial-booking__title">Hızlı Bilet Al</h3>
+          <div class="biletinial-booking__price-box">
+            <span class="biletinial-booking__price">₺120</span>
+            <span class="biletinial-booking__price-note">'den başlayan fiyatlarla</span>
+          </div>
+
+          <label for="bilet-turu" class="sr-only">Bilet Türü Seç</label>
+          <select id="bilet-turu" class="biletinial-booking__select">
+            <option>Aile Paketi (2+2) — ₺450</option>
+            <option>Yetişkin — ₺150</option>
+            <option>Çocuk — ₺120</option>
+          </select>
+
+          <label for="kisi-sayisi" class="sr-only">Kişi Sayısı Seç</label>
+          <select id="kisi-sayisi" class="biletinial-booking__select">
+            <option>1 Bilet</option>
+            <option>2 Bilet</option>
+            <option>3 Bilet</option>
+            <option>4 Bilet</option>
+          </select>
+
+          <button class="biletinial-booking__btn" onclick="scrollToSection('biletler')">Koltuk Seç & Bilet Al</button>
+        </aside>
+
+      </div>
+
+    </main>
+
+    <!-- ============================================================
+         TICKETS & VENUE TIMELINE SECTION
+         ============================================================ -->
+    <section id="biletler" class="biletinial-tickets">
+      <h2 class="biletinial-tickets__title">Rapunzel Oyun Biletleri ve Fiyatları</h2>
+      <p class="biletinial-tickets__subtitle">Aşağıdaki aktif gösterimlerden uygun olan tarihi seçerek biletinizi alabilirsiniz.</p>
+
+      <div class="biletinial-city-group">
+        <div class="biletinial-city-header">İstanbul</div>
+
+        <div class="biletinial-ticket-row">
+          <div class="biletinial-ticket-details">
+            <span class="biletinial-ticket-date">12 Temmuz 2026, Cumartesi — 14:00</span>
+            <span class="biletinial-ticket-venue">Zorlu PSM</span>
+            <span class="biletinial-ticket-city">İstanbul, Türkiye</span>
+          </div>
+          <div class="biletinial-ticket-actions">
+            <div class="biletinial-ticket-price-box">
+              <span class="biletinial-ticket-price-label">Başlangıç</span>
+              <span class="biletinial-ticket-price-val">₺120</span>
+            </div>
+            <button class="biletinial-ticket-row-btn" onclick="alert('Koltuk seçim ekranına yönlendiriliyorsunuz. Güvenli ödeme sayfasına aktarılacaksınız.')">Bilet Seç</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
   <footer class="footer" id="footer">
     <div class="container">
       <div class="footer__grid">
-        <div class="footer__brand"><div class="footer__brand-name">SeninBiletin</div><p class="footer__brand-desc">Türkiye'nin en kolay etkinlik bileti platformu.</p></div>
-        <div><h4 class="footer__col-title">Keşfet</h4><div class="footer__links"><a href="index.html#events-section">Tüm Etkinlikler</a><a href="index.html#categories-section">Kategoriler</a></div></div>
-        <div><h4 class="footer__col-title">Destek</h4><div class="footer__links"><a href="arama.html">Yardım Merkezi</a><a href="arama.html">SSS</a></div></div>
-        <div><h4 class="footer__col-title">Kurumsal</h4><div class="footer__links"><a href="arama.html">Hakkımızda</a><a href="arama.html">Gizlilik Politikası</a></div></div>
+        <div class="footer__brand">
+          <div class="footer__brand-name">SeninBiletin</div>
+          <p class="footer__brand-desc">
+            Türkiye'nin en kolay etkinlik bileti platformu. Konserlerden tiyatroya, festivallerden spor müsabakalarına tüm etkinliklere tek noktadan ulaşın.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer__col-title">Keşfet</h4>
+          <div class="footer__links">
+            <a href="index.html#events-section">Tüm Etkinlikler</a>
+            <a href="index.html#categories-section">Kategoriler</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer__col-title">Destek</h4>
+          <div class="footer__links">
+            <a href="arama.html">Yardım Merkezi</a>
+            <a href="arama.html">SSS</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer__col-title">Kurumsal</h4>
+          <div class="footer__links">
+            <a href="arama.html">Hakkımızda</a>
+            <a href="arama.html">Gizlilik Politikası</a>
+          </div>
+        </div>
       </div>
-      <div class="footer__bottom"><span class="footer__copyright">&copy; 2026 SeninBiletin. Tüm hakları saklıdır.</span><div class="footer__socials"><a href="#" class="footer__social-link" aria-label="Instagram">📸</a><a href="#" class="footer__social-link" aria-label="Twitter / X">✖</a><a href="#" class="footer__social-link" aria-label="YouTube">▶</a><a href="#" class="footer__social-link" aria-label="Facebook">📘</a></div></div>
+
+      <div class="footer__bottom">
+        <span class="footer__copyright">&copy; 2026 SeninBiletin. Tüm hakları saklıdır.</span>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X">✖</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">▶</a>
+          <a href="#" class="footer__social-link" aria-label="Facebook">📘</a>
+        </div>
+      </div>
     </div>
   </footer>
+
+  <script>
+    // Smooth scroll and tabs active class handling
+    function scrollToSection(id, element) {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      if (element) {
+        const buttons = document.querySelectorAll('.biletinial-tabs__btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        element.classList.add('active');
+      }
+    }
+
+    // Update active tab on scroll
+    window.addEventListener('scroll', () => {
+      const sections = ['detay', 'kadro', 'biletler', 'kurallar'];
+      const scrollPosition = window.scrollY + 160;
+
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            const buttons = document.querySelectorAll('.biletinial-tabs__btn');
+            buttons.forEach(btn => {
+              btn.classList.remove('active');
+              if (btn.getAttribute('onclick').includes(id)) {
+                btn.classList.add('active');
+              }
+            });
+          }
+        }
+      });
+    });
+  </script>
+
 </body>
+
 </html>
