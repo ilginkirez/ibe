@@ -15,28 +15,66 @@
 
 <body>
 
-  <!-- NAVBAR -->
   <nav class="navbar" aria-label="Ana navigasyon">
     <div class="container">
+
+      <!-- Logo -->
       <a href="index.html" class="navbar__logo" aria-label="SeninBiletin Ana Sayfa">
-        <span class="navbar__logo-icon" aria-hidden="true">S</span>
+        <img src="gorseller/logo.png" alt="SeninBiletin Logo" class="navbar__logo-img" />
         SeninBiletin
       </a>
 
-      <ul class="navbar__menu">
-        <li><a href="index.html#events-section">Etkinlikler</a></li>
-        <li><a href="index.html#steps-section">Nasıl Çalışır</a></li>
-        <li><a href="index.html#footer">İletişim</a></li>
-      </ul>
+        <!-- Ana Menü -->
+        <ul class="navbar__menu">
+          <li class="navbar__dropdown-wrapper">
+            <button class="navbar__dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+              Etkinlikler
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 8L2 4h8z"/></svg>
+            </button>
+            <div class="navbar__dropdown" role="menu">
+              <a href="konser.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/pexels-luan-kawee-475039735-16844549.jpg" alt="Konser" />
+                </div>
+                <span>Konser</span>
+              </a>
+              <a href="tiyatro.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/Tiyatro.jpg" alt="Tiyatro" />
+                </div>
+                <span>Tiyatro</span>
+              </a>
+              <a href="festival.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/pexels-soumya-sengupta-2156390952-34185066.jpg" alt="Festival" />
+                </div>
+                <span>Festival</span>
+              </a>
+              <a href="spor.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/Spor.jpg" alt="Spor" />
+                </div>
+                <span>Spor</span>
+              </a>
+            </div>
+          </li>
+          <li><a href="index.html#steps-section">Nasıl Çalışır</a></li>
+          <li><a href="index.html#footer">İletişim</a></li>
+        </ul>
 
+      <!-- Kullanıcı Aksiyonları -->
       <div class="navbar__actions">
         <a href="login.html" class="btn btn--outline">Giriş Yap</a>
-        <a href="#" class="btn btn--primary">Üye Ol</a>
+        <a href="register.html" class="btn btn--primary">Üye Ol</a>
       </div>
 
+      <!-- Mobil Menü Butonu -->
       <button class="navbar__toggle" aria-label="Menüyü aç">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
+
     </div>
   </nav>
 
@@ -145,8 +183,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺750</span>
             </div>
-            <a href="etkinlik-zamna.html" class="event-card__cta" aria-label="ZAMNA x MO Homecoming için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="etkinlik-zamna.html" class="event-card__cta" aria-label="ZAMNA x MO Homecoming festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -176,8 +214,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺450</span>
             </div>
-            <a href="ticket.html?event=zeytinli-rock" class="event-card__cta" aria-label="Zeytinli Rock Festivali için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="ticket.html?event=zeytinli-rock" class="event-card__cta" aria-label="Zeytinli Rock Festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -207,8 +245,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺600</span>
             </div>
-            <a href="ticket.html?event=bozcaada-caz" class="event-card__cta" aria-label="Bozcaada Caz Festivali için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="ticket.html?event=bozcaada-caz" class="event-card__cta" aria-label="Bozcaada Caz Festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -238,8 +276,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺850</span>
             </div>
-            <a href="ticket.html?event=cappadox" class="event-card__cta" aria-label="Cappadox Festivali için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="ticket.html?event=cappadox" class="event-card__cta" aria-label="Cappadox Festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -269,8 +307,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺300</span>
             </div>
-            <a href="ticket.html?event=istanbul-muzik" class="event-card__cta" aria-label="İstanbul Müzik Festivali için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="ticket.html?event=istanbul-muzik" class="event-card__cta" aria-label="İstanbul Müzik Festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -300,8 +338,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺1.200</span>
             </div>
-            <a href="ticket.html?event=lollapalooza" class="event-card__cta" aria-label="Lollapalooza İstanbul için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="ticket.html?event=lollapalooza" class="event-card__cta" aria-label="Lollapalooza İstanbul festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -363,6 +401,24 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const trigger = document.querySelector('.navbar__dropdown-trigger');
+    const dropdown = document.querySelector('.navbar__dropdown');
+    if (trigger && dropdown) {
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.toggle('open');
+        trigger.classList.toggle('active', isOpen);
+        trigger.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('click', function () {
+        dropdown.classList.remove('open');
+        trigger.classList.remove('active');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
+  </script>
 
 </body>
 

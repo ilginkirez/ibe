@@ -15,29 +15,66 @@
 
 <body>
 
-  <!-- NAVBAR -->
   <nav class="navbar" aria-label="Ana navigasyon">
     <div class="container">
+
+      <!-- Logo -->
       <a href="index.html" class="navbar__logo" aria-label="SeninBiletin Ana Sayfa">
-        <span class="navbar__logo-icon" aria-hidden="true">S</span>
+        <img src="gorseller/logo.png" alt="SeninBiletin Logo" class="navbar__logo-img" />
         SeninBiletin
       </a>
 
-      <ul class="navbar__menu">
-        <li><a href="index.html#categories-section">Kategoriler</a></li>
-        <li><a href="index.html#events-section">Etkinlikler</a></li>
-        <li><a href="index.html#steps-section">Nasıl Çalışır</a></li>
-        <li><a href="index.html#footer">İletişim</a></li>
-      </ul>
+        <!-- Ana Menü -->
+        <ul class="navbar__menu">
+          <li class="navbar__dropdown-wrapper">
+            <button class="navbar__dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+              Etkinlikler
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 8L2 4h8z"/></svg>
+            </button>
+            <div class="navbar__dropdown" role="menu">
+              <a href="konser.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/pexels-luan-kawee-475039735-16844549.jpg" alt="Konser" />
+                </div>
+                <span>Konser</span>
+              </a>
+              <a href="tiyatro.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/Tiyatro.jpg" alt="Tiyatro" />
+                </div>
+                <span>Tiyatro</span>
+              </a>
+              <a href="festival.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/pexels-soumya-sengupta-2156390952-34185066.jpg" alt="Festival" />
+                </div>
+                <span>Festival</span>
+              </a>
+              <a href="spor.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/Spor.jpg" alt="Spor" />
+                </div>
+                <span>Spor</span>
+              </a>
+            </div>
+          </li>
+          <li><a href="index.html#steps-section">Nasıl Çalışır</a></li>
+          <li><a href="index.html#footer">İletişim</a></li>
+        </ul>
 
+      <!-- Kullanıcı Aksiyonları -->
       <div class="navbar__actions">
-        <a href="#" class="btn btn--outline">Giriş Yap</a>
-        <a href="#" class="btn btn--primary">Üye Ol</a>
+        <a href="login.html" class="btn btn--outline">Giriş Yap</a>
+        <a href="register.html" class="btn btn--primary">Üye Ol</a>
       </div>
 
+      <!-- Mobil Menü Butonu -->
       <button class="navbar__toggle" aria-label="Menüyü aç">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
+
     </div>
   </nav>
 
@@ -149,8 +186,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺120</span>
             </div>
-            <a href="#" class="event-card__cta" aria-label="Kırmızı Başlıklı Kız için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="etkinlik-rapunzel.html" class="event-card__cta" aria-label="Rapunzel çocuk oyunu için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -180,8 +217,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺150</span>
             </div>
-            <a href="#" class="event-card__cta" aria-label="Madagaskar Sirki için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="ticket.html?event=madagaskar" class="event-card__cta" aria-label="Madagaskar Sirki için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -211,8 +248,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺80</span>
             </div>
-            <a href="#" class="event-card__cta" aria-label="Uzay Macerası Atölyesi için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="ticket.html?event=uzay-macerasi" class="event-card__cta" aria-label="Uzay Macerası Atölyesi için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -242,8 +279,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺250</span>
             </div>
-            <a href="#" class="event-card__cta" aria-label="Disney On Ice için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="ticket.html?event=disney-on-ice" class="event-card__cta" aria-label="Disney On Ice için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -273,8 +310,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺100</span>
             </div>
-            <a href="#" class="event-card__cta" aria-label="Kukla Gösterisi için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="ticket.html?event=kukla-gosterisi" class="event-card__cta" aria-label="Kukla Gösterisi için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -304,8 +341,8 @@
               <span class="event-card__price-label">Başlayan fiyat</span>
               <span class="event-card__price-value">₺90</span>
             </div>
-            <a href="#" class="event-card__cta" aria-label="Masal Saati için bilet al">
-              Bilet Al <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            <a href="ticket.html?event=masal-saati" class="event-card__cta" aria-label="Masal Saati için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -362,6 +399,24 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const trigger = document.querySelector('.navbar__dropdown-trigger');
+    const dropdown = document.querySelector('.navbar__dropdown');
+    if (trigger && dropdown) {
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.toggle('open');
+        trigger.classList.toggle('active', isOpen);
+        trigger.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('click', function () {
+        dropdown.classList.remove('open');
+        trigger.classList.remove('active');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
+  </script>
 
 </body>
 
