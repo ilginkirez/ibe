@@ -1377,14 +1377,21 @@ input:focus-visible {
   width: 100%;
   padding: 16px;
   font-size: var(--font-size-base);
+  font-weight: 700;
   border-radius: var(--radius-md);
-  box-shadow: 0 8px 24px rgba(0, 125, 138, 0.25);
+  background-color: #229799;
+  color: #F5F5F5;
+  border: none;
+  box-shadow: 0 8px 24px rgba(34, 151, 153, 0.3);
   margin-bottom: 24px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
 }
 
 .auth-submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 125, 138, 0.35);
+  background-color: #48CFCB;
+  box-shadow: 0 12px 32px rgba(72, 207, 203, 0.4);
 }
 
 .auth-divider {
