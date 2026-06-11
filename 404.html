@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SeninBiletin — En sevilen konserleri ve canlı müzik etkinliklerini keşfet. Hemen biletini al." />
+  <title>Sayfa Bulunamadı — SeninBiletin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <nav class="navbar" aria-label="Ana navigasyon">
+    <div class="container">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar__logo" aria-label="SeninBiletin Ana Sayfa">
+        <img src="gorseller/logo.png" alt="SeninBiletin Logo" class="navbar__logo-img" />
+        SeninBiletin
+      </a>
+
+        <!-- Ana Menü -->
+        <ul class="navbar__menu">
+          <li class="navbar__dropdown-wrapper">
+            <button class="navbar__dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+              Etkinlikler
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 8L2 4h8z"/></svg>
+            </button>
+            <div class="navbar__dropdown" role="menu">
+              <a href="konser.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/pexels-luan-kawee-475039735-16844549.jpg" alt="Konser" />
+                </div>
+                <span>Konser</span>
+              </a>
+              <a href="tiyatro.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/Tiyatro.jpg" alt="Tiyatro" />
+                </div>
+                <span>Tiyatro</span>
+              </a>
+              <a href="festival.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/pexels-soumya-sengupta-2156390952-34185066.jpg" alt="Festival" />
+                </div>
+                <span>Festival</span>
+              </a>
+              <a href="spor.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/Spor.jpg" alt="Spor" />
+                </div>
+                <span>Spor</span>
+              </a>
+            </div>
+          </li>
+          <li><a href="index.html#steps-section">Nasıl Çalışır</a></li>
+          <li><a href="404.html">İletişim</a></li>
+        </ul>
+
+      <!-- Kullanıcı Aksiyonları -->
+      <div class="navbar__actions">
+        <a href="login.html" class="btn btn--outline">Giriş Yap</a>
+        <a href="register.html" class="btn btn--primary">Üye Ol</a>
+      </div>
+
+      <!-- Mobil Menü Butonu -->
+      <button class="navbar__toggle" aria-label="Menüyü aç">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- 404 CONTENT -->
+  <section class="page-header" style="background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary)); padding-bottom: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;" aria-label="404 Hata Sayfası">
+    <div class="page-header__content">
+      <h1 class="page-header__title" style="font-size: 6rem; margin-bottom: 10px;">404</h1>
+      <p class="page-header__subtitle" style="font-size: 1.5rem; margin-bottom: 30px;">Tüh! Aradığınız sayfaya şu anda ulaşılamıyor veya yapım aşamasında.</p>
+      <a href="index.html" class="btn btn--primary btn--large" style="display: inline-block;">Ana Sayfaya Dön</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__brand-name">SeninBiletin</div>
+          <p class="footer__brand-desc">Türkiye'nin en kolay etkinlik bileti platformu. Konserlerden tiyatroya, festivallerden spor müsabakalarına tüm etkinliklere tek noktadan ulaşın.</p>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Keşfet</h4>
+          <div class="footer__links">
+            <a href="tum-etkinlikler.html">Tüm Etkinlikler</a>
+            <a href="konser.html">Konserler</a>
+            <a href="tiyatro.html">Tiyatro</a>
+            <a href="festival.html">Festivaller</a>
+            <a href="spor.html">Spor</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Destek</h4>
+          <div class="footer__links">
+            <a href="404.html">Yardım Merkezi</a>
+            <a href="404.html">Sıkça Sorulan Sorular</a>
+            <a href="404.html">İade Politikası</a>
+            <a href="404.html">İletişim</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Kurumsal</h4>
+          <div class="footer__links">
+            <a href="404.html">Hakkımızda</a>
+            <a href="404.html">Kariyer</a>
+            <a href="404.html">Gizlilik Politikası</a>
+            <a href="404.html">Kullanım Şartları</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copyright">&copy; 2026 SeninBiletin. Tüm hakları saklıdır.</span>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X">✖</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">▶</a>
+          <a href="#" class="footer__social-link" aria-label="Facebook">📘</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const trigger = document.querySelector('.navbar__dropdown-trigger');
+    const dropdown = document.querySelector('.navbar__dropdown');
+    if (trigger && dropdown) {
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.toggle('open');
+        trigger.classList.toggle('active', isOpen);
+        trigger.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('click', function () {
+        dropdown.classList.remove('open');
+        trigger.classList.remove('active');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
+  </script>
+
+</body>
+
+</html>
