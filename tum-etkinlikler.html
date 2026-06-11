@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SeninBiletin — En sevilen konserleri ve canlı müzik etkinliklerini keşfet. Hemen biletini al." />
+  <title>Tüm Etkinlikler — SeninBiletin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <nav class="navbar" aria-label="Ana navigasyon">
+    <div class="container">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar__logo" aria-label="SeninBiletin Ana Sayfa">
+        <img src="gorseller/logo.png" alt="SeninBiletin Logo" class="navbar__logo-img" />
+        SeninBiletin
+      </a>
+
+        <!-- Ana Menü -->
+        <ul class="navbar__menu">
+          <li class="navbar__dropdown-wrapper">
+            <button class="navbar__dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+              Etkinlikler
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 8L2 4h8z"/></svg>
+            </button>
+            <div class="navbar__dropdown" role="menu">
+              <a href="konser.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/pexels-luan-kawee-475039735-16844549.jpg" alt="Konser" />
+                </div>
+                <span>Konser</span>
+              </a>
+              <a href="tiyatro.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/Tiyatro.jpg" alt="Tiyatro" />
+                </div>
+                <span>Tiyatro</span>
+              </a>
+              <a href="festival.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/pexels-soumya-sengupta-2156390952-34185066.jpg" alt="Festival" />
+                </div>
+                <span>Festival</span>
+              </a>
+              <a href="spor.html" class="navbar__dropdown-card" role="menuitem">
+                <div class="navbar__dropdown-img">
+                  <img src="Assests/Spor.jpg" alt="Spor" />
+                </div>
+                <span>Spor</span>
+              </a>
+            </div>
+          </li>
+          <li><a href="index.html#steps-section">Nasıl Çalışır</a></li>
+          <li><a href="index.html#footer">İletişim</a></li>
+        </ul>
+
+      <!-- Kullanıcı Aksiyonları -->
+      <div class="navbar__actions">
+        <a href="login.html" class="btn btn--outline">Giriş Yap</a>
+        <a href="register.html" class="btn btn--primary">Üye Ol</a>
+      </div>
+
+      <!-- Mobil Menü Butonu -->
+      <button class="navbar__toggle" aria-label="Menüyü aç">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER — Figure/Ground: güçlü görsel zemin, içerik öne çıkar -->
+  <section class="page-header" style="background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary))" aria-label="Konserler başlığı">
+    <div class="page-header__content">
+
+      <!-- Breadcrumb — Continuity: kullanıcı nerede olduğunu bilir -->
+      <nav class="breadcrumb" aria-label="Konum">
+        <a href="index.html">Ana Sayfa</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Tüm Etkinlikler</span>
+      </nav>
+
+      <h1 class="page-header__title">Tüm Etkinlikler</h1>
+      <p class="page-header__subtitle">Konserden tiyatroya, spordan festivale aradığın tüm etkinlikler burada.</p>
+
+      <!-- Stats bar — Proximity + Common Region: ilgili bilgiler tek grupta -->
+      <div class="page-header__stats" role="list" aria-label="Genel istatistikler">
+        <div class="stat-item" role="listitem">
+          <span class="stat-item__value">124</span>
+          <span class="stat-item__label">Etkinlik</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item" role="listitem">
+          <span class="stat-item__value">12</span>
+          <span class="stat-item__label">Şehir</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item" role="listitem">
+          <span class="stat-item__value">8</span>
+          <span class="stat-item__label">Bu Hafta</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KATEGORİ NAVİGASYONU — Similarity: tüm kategoriler aynı dil, aktif olan vurgulu -->
+  <nav class="category-nav" aria-label="Kategori navigasyonu">
+    <div class="container">
+      <a href="tum-etkinlikler.html" class="category-nav__item category-nav__item--active" aria-current="page">Tüm Etkinlikler</a>
+      <a href="konser.html" class="category-nav__item">Konser</a>
+      <a href="tiyatro.html" class="category-nav__item">Tiyatro</a>
+      <a href="festival.html" class="category-nav__item">Festival</a>
+      <a href="spor.html" class="category-nav__item">Spor</a>
+    </div>
+  </nav>
+
+  <!-- FİLTRELER -->
+  <section class="filters" aria-label="Etkinlik filtreleri">
+    <div class="container">
+      <div class="filter-group">
+        <label for="filter-city" class="filter-group__label">Şehir</label>
+        <select id="filter-city" class="filter-select">
+          <option value="">Tüm Şehirler</option>
+          <option value="istanbul">İstanbul</option>
+          <option value="ankara">Ankara</option>
+          <option value="izmir">İzmir</option>
+          <option value="antalya">Antalya</option>
+          <option value="bursa">Bursa</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-date" class="filter-group__label">Tarih</label>
+        <input type="date" id="filter-date" class="filter-date" />
+      </div>
+      <div class="filter-group">
+        <label for="filter-sort" class="filter-group__label">Sırala</label>
+        <select id="filter-sort" class="filter-select">
+          <option value="date">Tarihe Göre</option>
+          <option value="price-asc">Fiyat: Düşükten Yükseğe</option>
+          <option value="price-desc">Fiyat: Yüksekten Düşüğe</option>
+          <option value="popular">Popülerlik</option>
+        </select>
+      </div>
+      <span class="filter-result-count">124 etkinlik bulundu</span>
+    </div>
+  </section>
+
+  <!-- ETKİNLİKLER — Similarity: tüm kartlar aynı yapı; Proximity: her kartta ilgili bilgiler gruplanmış -->
+  <section class="events" aria-label="Konser etkinlikleri">
+    <div class="container">
+
+      <div class="events__grid">
+
+
+        <!-- Kart 1 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--1">
+            <img src="gorseller/melike sahin.webp" alt="Melike Şahin Konseri" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Konser</span>
+            <h3 class="event-card__title">Melike Şahin</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>15 Temmuz 2026, Salı</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Harbiye Açıkhava, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺250</span>
+            </div>
+            <a href="etkinlik-melike-sahin.html" class="event-card__cta" aria-label="Melike Şahin konseri için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 2 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--2">
+            <img src="gorseller/morveotesi.jpg" alt="Mor ve Ötesi Konseri" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yeni">Yeni</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Konser</span>
+            <h3 class="event-card__title">Mor ve Ötesi</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>22 Temmuz 2026, Salı</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Volkswagen Arena, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺280</span>
+            </div>
+            <a href="ticket.html?event=mor-ve-otesi" class="event-card__cta" aria-label="Mor ve Ötesi konseri için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 3 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--3">
+            <img src="gorseller/ceza-new-1911.jpg" alt="Ceza Konseri" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Konser</span>
+            <h3 class="event-card__title">Ceza</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>5 Ağustos 2026, Çarşamba</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>IF Performance Hall, Ankara</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺200</span>
+            </div>
+            <a href="ticket.html?event=ceza" class="event-card__cta" aria-label="Ceza konseri için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 4 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--4">
+            <img src="gorseller/sezen-aksu-blog.jpg" alt="Sezen Aksu Konseri" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yakin">Son 5 Gün</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Konser</span>
+            <h3 class="event-card__title">Sezen Aksu</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>12 Ağustos 2026, Çarşamba</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Kültürpark Açıkhava, İzmir</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺400</span>
+            </div>
+            <a href="ticket.html?event=sezen-aksu" class="event-card__cta" aria-label="Sezen Aksu konseri için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 5 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--5">
+            <img src="gorseller/aleyna-tilki.webp" alt="Aleyna Tilki Konseri" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Konser</span>
+            <h3 class="event-card__title">Aleyna Tilki</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>20 Ağustos 2026, Perşembe</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Küçükçiftlik Park, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺300</span>
+            </div>
+            <a href="etkinlik-aleyna-tilki.html" class="event-card__cta" aria-label="Aleyna Tilki konseri için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 6 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--6">
+            <img src="gorseller/mfö.jpg" alt="MFÖ Konseri" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yeni">Yeni</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Konser</span>
+            <h3 class="event-card__title">MFÖ</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>28 Ağustos 2026, Cuma</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Expo Center, Antalya</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺220</span>
+            </div>
+            <a href="ticket.html?event=mfo" class="event-card__cta" aria-label="MFÖ konseri için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+      
+
+
+        <!-- Kart 1 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--1">
+            <img src="gorseller/suc-ve-ceza.jpg" alt="Suç ve Ceza Tiyatro Oyunu" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Tiyatro</span>
+            <h3 class="event-card__title">Suç ve Ceza</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>8 Temmuz 2026, Çarşamba</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>AKM Tiyatro Salonu, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺180</span>
+            </div>
+            <a href="etkinlik-suc-ve-ceza.html" class="event-card__cta" aria-label="Suç ve Ceza oyunu için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 2 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--2">
+            <img src="gorseller/baran.jpg" alt="Baran Oyunu" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yeni">Yeni</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Tiyatro</span>
+            <h3 class="event-card__title">Baran</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>18 Temmuz 2026, Cuma</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Zorlu PSM, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺150</span>
+            </div>
+            <a href="ticket.html?event=baran" class="event-card__cta" aria-label="Baran oyunu için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 3 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--3">
+            <img src="gorseller/ilker.jpg" alt="İlker Gümüşoluk Stand-up" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Tiyatro</span>
+            <h3 class="event-card__title">İlker Gümüşoluk Stand-up</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>25 Temmuz 2026, Cuma</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>IF Performance Hall, Ankara</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺120</span>
+            </div>
+            <a href="ticket.html?event=ilker" class="event-card__cta" aria-label="İlker Gümüşoluk stand-up için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 4 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--4">
+            <img src="gorseller/ciplakayaklar.jpg" alt="Çıplak Ayaklar Oyunu" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yeni">Yeni</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Tiyatro</span>
+            <h3 class="event-card__title">Çıplak Ayaklar</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>2 Ağustos 2026, Cumartesi</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Kültürpark Tiyatrosu, İzmir</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺140</span>
+            </div>
+            <a href="ticket.html?event=ciplak-ayaklar" class="event-card__cta" aria-label="Çıplak Ayaklar oyunu için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 5 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--5">
+            <img src="gorseller/karatren.jpg" alt="Kara Tren Oyunu" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yakin">Son 3 Gün</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Tiyatro</span>
+            <h3 class="event-card__title">Kara Tren</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>8 Ağustos 2026, Cuma</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Devlet Tiyatrosu, Ankara</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺160</span>
+            </div>
+            <a href="ticket.html?event=kara-tren" class="event-card__cta" aria-label="Kara Tren oyunu için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 6 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--6">
+            <img src="gorseller/kibarlik-budalasi.jpg" alt="Kibarlık Budalası Oyunu" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Tiyatro</span>
+            <h3 class="event-card__title">Kibarlık Budalası</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>15 Ağustos 2026, Cumartesi</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Zorlu PSM, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺190</span>
+            </div>
+            <a href="ticket.html?event=kibarlik-budalasi" class="event-card__cta" aria-label="Kibarlık Budalası oyunu için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+      
+
+
+        <!-- Kart 1 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--3">
+            <img src="gorseller/zamna-x-mo-homecoming-2026-85785.jpg" alt="ZAMNA x MO Homecoming 2026" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yeni">Yeni</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Festival</span>
+            <h3 class="event-card__title">ZAMNA x MO Homecoming 2026</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>29–30 Ağustos 2026</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Life Park, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺750</span>
+            </div>
+            <a href="etkinlik-zamna.html" class="event-card__cta" aria-label="ZAMNA x MO Homecoming festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 2 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--1">
+            <img src="gorseller/zeytinli-rock-festivali-2025-15542.jpg" alt="Zeytinli Rock Festivali" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Festival</span>
+            <h3 class="event-card__title">Zeytinli Rock Festivali 2026</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>22–25 Ağustos 2026</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Zeytinli, Balıkesir</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺450</span>
+            </div>
+            <a href="ticket.html?event=zeytinli-rock" class="event-card__cta" aria-label="Zeytinli Rock Festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 3 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--2">
+            <img src="gorseller/bozcaaada-caz-festivali-6.09.2023-23-02-54.jpg" alt="Bozcaada Caz Festivali" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yeni">Yeni</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Festival</span>
+            <h3 class="event-card__title">Bozcaada Caz Festivali</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>4–6 Eylül 2026</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Ayazma Plajı, Bozcaada</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺600</span>
+            </div>
+            <a href="ticket.html?event=bozcaada-caz" class="event-card__cta" aria-label="Bozcaada Caz Festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 4 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--4">
+            <img src="gorseller/cappadox-21.04.2024-21-40-51-749x500.jpg" alt="Cappadox Festivali" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Festival</span>
+            <h3 class="event-card__title">Cappadox Festivali</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>15–18 Ekim 2026</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Kapadokya, Nevşehir</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺850</span>
+            </div>
+            <a href="ticket.html?event=cappadox" class="event-card__cta" aria-label="Cappadox Festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 5 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--5">
+            <img src="gorseller/istanbul-muzik-fest.jpg" alt="İstanbul Müzik Festivali" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yakin">Son 5 Gün</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Festival</span>
+            <h3 class="event-card__title">İstanbul Müzik Festivali</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>10–25 Haziran 2026</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Çeşitli Mekanlar, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺300</span>
+            </div>
+            <a href="ticket.html?event=istanbul-muzik" class="event-card__cta" aria-label="İstanbul Müzik Festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 6 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--6">
+            <img src="gorseller/lollapalooza.png" alt="Lollapalooza İstanbul" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yeni">Yeni</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Festival</span>
+            <h3 class="event-card__title">Lollapalooza İstanbul</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>1–3 Eylül 2026</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Parkorman, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺1.200</span>
+            </div>
+            <a href="ticket.html?event=lollapalooza" class="event-card__cta" aria-label="Lollapalooza İstanbul festivali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+      
+
+
+        <!-- Kart 1 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--4">
+            <img src="gorseller/vakifban-voleybol.jpg" alt="Vakıfbank - Eczacıbaşı Final Karşılaşması" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Spor</span>
+            <h3 class="event-card__title">Vakıfbank - Eczacıbaşı Final</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>12 Ekim 2026, Pazartesi</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>TVF Burhan Felek Salonu, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺150</span>
+            </div>
+            <a href="etkinlik-vakifbank.html" class="event-card__cta" aria-label="Vakıfbank - Eczacıbaşı finali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 2 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--1">
+            <img src="gorseller/fb-gs-kpk_1.jpg" alt="Süper Lig: Fenerbahçe vs Galatasaray" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Spor</span>
+            <h3 class="event-card__title">Süper Lig: Fenerbahçe vs Galatasaray</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>3 Ağustos 2026, Pazar</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Ülker Stadyumu, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺350</span>
+            </div>
+            <a href="ticket.html?event=fb-gs" class="event-card__cta" aria-label="Fenerbahçe vs Galatasaray derbisi için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 3 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--2">
+            <img src="gorseller/anadolu-efes.gif" alt="EuroLeague: Anadolu Efes vs Real Madrid" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yeni">Yeni</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Spor</span>
+            <h3 class="event-card__title">EuroLeague: Anadolu Efes vs Real Madrid</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>15 Ekim 2026, Çarşamba</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Sinan Erdem Spor Salonu, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺400</span>
+            </div>
+            <a href="ticket.html?event=anadolu-efes" class="event-card__cta" aria-label="Anadolu Efes vs Real Madrid maçı için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 4 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--3">
+            <img src="gorseller/turkiye-italya.jpg" alt="Filenin Sultanları: Türkiye vs İtalya" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yakin">Son 5 Gün</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Spor</span>
+            <h3 class="event-card__title">Filenin Sultanları: Türkiye vs İtalya</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>20 Temmuz 2026, Perşembe</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Antalya Spor Salonu, Antalya</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺200</span>
+            </div>
+            <a href="ticket.html?event=turkiye-italya" class="event-card__cta" aria-label="Türkiye vs İtalya maçı için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 5 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--5">
+            <img src="gorseller/formuls.webp" alt="Formula 1: İstanbul Grand Prix" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--yeni">Yeni</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Spor</span>
+            <h3 class="event-card__title">Formula 1: İstanbul Grand Prix</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>12–14 Eylül 2026</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>İstanbul Park, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺1.500</span>
+            </div>
+            <a href="ticket.html?event=formula" class="event-card__cta" aria-label="Formula 1 İstanbul için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Kart 6 -->
+        <article class="event-card">
+          <div class="event-card__image event-card__image--6">
+            <img src="gorseller/turkiye-kupa.webp" alt="Türkiye Kupası Finali" class="event-card__img" />
+            <span class="event-card__badge event-card__badge--populer">Popüler</span>
+          </div>
+          <div class="event-card__body">
+            <span class="event-card__category">Spor</span>
+            <h3 class="event-card__title">Türkiye Kupası Finali</h3>
+            <div class="event-card__meta">
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📅</span>
+                <span>25 Mayıs 2026, Pazar</span>
+              </div>
+              <div class="event-card__meta-item">
+                <span class="event-card__meta-icon" aria-hidden="true">📍</span>
+                <span>Atatürk Olimpiyat Stadyumu, İstanbul</span>
+              </div>
+            </div>
+          </div>
+          <div class="event-card__footer">
+            <div class="event-card__price">
+              <span class="event-card__price-label">Başlayan fiyat</span>
+              <span class="event-card__price-value">₺500</span>
+            </div>
+            <a href="ticket.html?event=turkiye-kupa" class="event-card__cta" aria-label="Türkiye Kupası Finali için etkinliği gör">
+              Etkinliği Gör <span class="event-card__cta-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+      
+
+</div>
+      
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__brand-name">SeninBiletin</div>
+          <p class="footer__brand-desc">Türkiye'nin en kolay etkinlik bileti platformu. Konserlerden tiyatroya, festivallerden spor müsabakalarına tüm etkinliklere tek noktadan ulaşın.</p>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Keşfet</h4>
+          <div class="footer__links">
+            <a href="tum-etkinlikler.html">Tüm Etkinlikler</a>
+            <a href="konser.html">Konserler</a>
+            <a href="tiyatro.html">Tiyatro</a>
+            <a href="festival.html">Festivaller</a>
+            <a href="spor.html">Spor</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Destek</h4>
+          <div class="footer__links">
+            <a href="#">Yardım Merkezi</a>
+            <a href="#">Sıkça Sorulan Sorular</a>
+            <a href="#">İade Politikası</a>
+            <a href="#">İletişim</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Kurumsal</h4>
+          <div class="footer__links">
+            <a href="#">Hakkımızda</a>
+            <a href="#">Kariyer</a>
+            <a href="#">Gizlilik Politikası</a>
+            <a href="#">Kullanım Şartları</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copyright">&copy; 2026 SeninBiletin. Tüm hakları saklıdır.</span>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X">✖</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">▶</a>
+          <a href="#" class="footer__social-link" aria-label="Facebook">📘</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const trigger = document.querySelector('.navbar__dropdown-trigger');
+    const dropdown = document.querySelector('.navbar__dropdown');
+    if (trigger && dropdown) {
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.toggle('open');
+        trigger.classList.toggle('active', isOpen);
+        trigger.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('click', function () {
+        dropdown.classList.remove('open');
+        trigger.classList.remove('active');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
+  </script>
+
+</body>
+
+</html>
