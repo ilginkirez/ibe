@@ -17,6 +17,10 @@
         SeninBiletin
       </a>
       <div class="navbar__actions">
+        <a href="sepet.html" class="cart-icon-btn" id="navbar-cart" aria-label="Sepetim">
+          🛒
+          <span class="cart-icon-btn__badge" id="navbar-cart-badge">0</span>
+        </a>
         <a href="login.html" class="btn btn--outline">Giriş Yap</a>
         <a href="register.html" class="btn btn--primary">Üye Ol</a>
       </div>
@@ -445,7 +449,8 @@
       <!-- İşlem Çubuğu -->
       <div class="ticket-actions">
         <p class="ticket-notice">Seçilen Koltuk: <strong id="total-seats">0</strong> | Toplam Tutar: <strong id="total-price" style="font-size:1.25rem;color:var(--color-primary);">0₺</strong></p>
-        <button class="btn btn--primary btn--large" style="padding: 16px 40px; font-size: 1.125rem;">Sepete Ekle <span aria-hidden="true">→</span></button>
+        <button id="add-to-cart-btn" class="btn btn--primary btn--large" style="padding: 16px 40px; font-size: 1.125rem;" disabled>Sepete Ekle <span aria-hidden="true">→</span></button>
+        <p id="cart-warning" class="ticket-notice" style="color:var(--color-accent-red);display:none;">Lütfen en az bir koltuk seçin.</p>
       </div>
 
     
@@ -614,6 +619,16 @@
           }
         };
 
+        // Navbar sepet rozeti
+        (function() {
+          const cart = JSON.parse(localStorage.getItem('sb_cart') || '[]');
+          if (cart.length > 0) {
+            const badge = document.getElementById('navbar-cart-badge');
+            badge.textContent = cart.length;
+            badge.classList.add('has-items');
+          }
+        })();
+
         document.addEventListener('DOMContentLoaded', () => {
           const params = new URLSearchParams(window.location.search);
           const eventKey = params.get('event') || 'melike-sahin';
@@ -649,20 +664,54 @@
           const checkboxes = document.querySelectorAll('.seat-checkbox:not(:disabled)');
           const totalPriceEl = document.getElementById('total-price');
           const totalSeatsEl = document.getElementById('total-seats');
-          
-          checkboxes.forEach(cb => {
-            cb.addEventListener('change', () => {
-              let total = 0;
-              let count = 0;
-              checkboxes.forEach(box => {
-                if(box.checked) {
-                  count++;
-                  total += parseInt(box.getAttribute('data-price'));
-                }
-              });
-              totalSeatsEl.innerText = count;
-              totalPriceEl.innerText = total + '₺';
+          const addToCartBtn = document.getElementById('add-to-cart-btn');
+          const cartWarning = document.getElementById('cart-warning');
+
+          function updateTotals() {
+            let total = 0, count = 0;
+            checkboxes.forEach(box => {
+              if (box.checked) { count++; total += parseInt(box.getAttribute('data-price')); }
             });
+            totalSeatsEl.innerText = count;
+            totalPriceEl.innerText = total + '₺';
+            addToCartBtn.disabled = count === 0;
+            addToCartBtn.style.opacity = count === 0 ? '0.5' : '1';
+          }
+
+          checkboxes.forEach(cb => cb.addEventListener('change', updateTotals));
+
+          addToCartBtn.addEventListener('click', () => {
+            const selectedSeats = [];
+            checkboxes.forEach(box => {
+              if (box.checked) {
+                const cat = box.closest('.seat-category-block');
+                const catTitle = cat ? cat.querySelector('.category-title').innerText : '';
+                selectedSeats.push({
+                  id: box.id,
+                  price: parseInt(box.getAttribute('data-price')),
+                  category: catTitle
+                });
+              }
+            });
+            if (selectedSeats.length === 0) {
+              cartWarning.style.display = 'block';
+              return;
+            }
+            const cartItem = {
+              eventKey,
+              title: data.title,
+              category: data.category,
+              image: data.image,
+              date: data.date,
+              venue: data.venue,
+              seats: selectedSeats,
+              addedAt: Date.now()
+            };
+            const cart = JSON.parse(localStorage.getItem('sb_cart') || '[]');
+            const existing = cart.findIndex(i => i.eventKey === eventKey);
+            if (existing > -1) cart[existing] = cartItem; else cart.push(cartItem);
+            localStorage.setItem('sb_cart', JSON.stringify(cart));
+            window.location.href = 'sepet.html';
           });
         });
       </script>

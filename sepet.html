@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sepetim — SeninBiletin</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       SEPET SAYFASI — Gestalt İlkeleri Uygulaması
+       Proximity, Similarity, Closure, Figure-Ground, Continuity
+       ============================================================ */
+
+    /* İlerleme Adımları — Continuity: kullanıcı nerede olduğunu bilir */
+    .checkout-steps {
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+      padding: 20px 24px;
+    }
+
+    .checkout-steps .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+    }
+
+    .step-item__circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-sm);
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: all var(--transition-normal);
+    }
+
+    .step-item--done .step-item__circle {
+      background: var(--color-accent-green);
+      color: var(--color-white);
+    }
+
+    .step-item--active .step-item__circle {
+      background: var(--color-primary-gradient);
+      color: var(--color-white);
+      box-shadow: 0 4px 16px rgba(0, 125, 138, 0.35);
+    }
+
+    .step-item--pending .step-item__circle {
+      background: var(--color-bg);
+      color: var(--color-text-light);
+      border: 2px solid var(--color-border);
+    }
+
+    .step-item__label {
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+    }
+
+    .step-item--done .step-item__label { color: var(--color-accent-green); }
+    .step-item--active .step-item__label { color: var(--color-primary); }
+    .step-item--pending .step-item__label { color: var(--color-text-light); }
+
+    .step-connector {
+      width: 80px;
+      height: 2px;
+      background: var(--color-border);
+      margin: 0 8px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .step-connector--done {
+      background: var(--color-accent-green);
+    }
+
+    /* Sayfa İçeriği */
+    .cart-page {
+      padding: 48px 24px 80px;
+      background: var(--color-bg);
+      min-height: calc(100vh - 64px - 65px);
+    }
+
+    .cart-page .container {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* Sol Kolon */
+    .cart-left {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cart-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 800;
+      color: var(--color-text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .cart-count-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 7px;
+      background: var(--color-primary);
+      color: var(--color-white);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+    }
+
+    /* Bilet Kartı — Closure + Common Region: her bilet kendi bölgesinde */
+    .cart-item {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--color-border);
+      overflow: hidden;
+      transition: all var(--transition-normal);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cart-item:hover {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    /* Etkinlik Başlığı (üst bölüm) — Figure-Ground */
+    .cart-item__header {
+      display: flex;
+      gap: 20px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--color-border);
+      align-items: center;
+    }
+
+    .cart-item__image {
+      width: 88px;
+      height: 88px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cart-item__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .cart-item__event-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cart-item__event-category {
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
+    }
+
+    .cart-item__event-title {
+      font-size: var(--font-size-lg);
+      font-weight: 800;
+      color: var(--color-text);
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cart-item__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .cart-item__meta-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .cart-item__remove {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--color-border);
+      background: transparent;
+      color: var(--color-text-light);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      font-family: var(--font-family);
+    }
+
+    .cart-item__remove:hover {
+      border-color: var(--color-accent-red);
+      background: #fef2f2;
+      color: var(--color-accent-red);
+    }
+
+    /* Koltuk Listesi — Proximity: ilgili koltuklar bir arada */
+    .cart-item__seats {
+      padding: 16px 24px 20px;
+    }
+
+    .cart-item__seats-title {
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Koltuk Grupları — Similarity: aynı kategorideki koltuklar aynı görünür */
+    .seat-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--color-bg);
+      margin-bottom: 8px;
+      transition: background var(--transition-fast);
+    }
+
+    .seat-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .seat-group:hover {
+      background: var(--color-primary-light);
+    }
+
+    .seat-group__left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .seat-group__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .seat-group__dot--vip { background: #d4af37; }
+    .seat-group__dot--kat1 { background: var(--color-primary); }
+    .seat-group__dot--kat2 { background: #64748b; }
+
+    .seat-group__label {
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .seat-group__count {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+      background: var(--color-white);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+    }
+
+    .seat-group__price {
+      font-size: var(--font-size-sm);
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    /* Boş Sepet Durumu */
+    .cart-empty {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      border: 1.5px dashed var(--color-border);
+      padding: 64px 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cart-empty__icon {
+      font-size: 4rem;
+      animation: empty-float 3s ease-in-out infinite;
+    }
+
+    @keyframes empty-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .cart-empty__title {
+      font-size: var(--font-size-xl);
+      font-weight: 800;
+      color: var(--color-text);
+    }
+
+    .cart-empty__desc {
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      max-width: 320px;
+      line-height: 1.6;
+    }
+
+    /* Sağ Kolon — Sipariş Özeti */
+    .cart-right {
+      position: sticky;
+      top: 88px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .order-summary {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--color-border);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .order-summary__header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .order-summary__title {
+      font-size: var(--font-size-lg);
+      font-weight: 800;
+      color: var(--color-text);
+    }
+
+    .order-summary__body {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Fiyat Satırları — Proximity: ilgili rakamlar bir arada */
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: var(--font-size-sm);
+    }
+
+    .price-row__label {
+      color: var(--color-text-secondary);
+    }
+
+    .price-row__value {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .price-divider {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 4px 0;
+    }
+
+    .price-row--total {
+      padding-top: 4px;
+    }
+
+    .price-row--total .price-row__label {
+      font-size: var(--font-size-base);
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    .price-row--total .price-row__value {
+      font-size: var(--font-size-xl);
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+
+    .order-summary__footer {
+      padding: 0 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Promo Kod */
+    .promo-input-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .promo-input {
+      flex: 1;
+      padding: 10px 14px;
+      font-family: var(--font-family);
+      font-size: var(--font-size-sm);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-text);
+      background: var(--color-bg);
+      transition: border-color var(--transition-fast);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .promo-input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      background: var(--color-white);
+    }
+
+    .promo-input::placeholder {
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--color-text-light);
+    }
+
+    .promo-btn {
+      padding: 10px 16px;
+      font-size: var(--font-size-sm);
+      font-weight: 700;
+      font-family: var(--font-family);
+      color: var(--color-primary);
+      background: var(--color-primary-light);
+      border: 1.5px solid var(--color-primary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+    }
+
+    .promo-btn:hover {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 16px;
+      font-size: var(--font-size-base);
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 24px rgba(0, 125, 138, 0.25);
+    }
+
+    .checkout-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0, 125, 138, 0.35);
+    }
+
+    .checkout-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Güvenlik Rozetleri — Similarity + Proximity */
+    .security-badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding-top: 8px;
+    }
+
+    .security-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: var(--font-size-xs);
+      color: var(--color-text-light);
+    }
+
+    /* Yardımcı Kart */
+    .help-card {
+      background: var(--color-primary-light);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(0, 125, 138, 0.15);
+      padding: 16px 20px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .help-card__icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .help-card__text {
+      font-size: var(--font-size-sm);
+      color: var(--color-primary-dark);
+      line-height: 1.5;
+    }
+
+    .help-card__text strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    /* Sepete Dön Linki */
+    .cart-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      transition: color var(--transition-fast);
+      margin-top: 4px;
+    }
+
+    .cart-back-link:hover {
+      color: var(--color-primary);
+    }
+
+    /* Promo başarılı mesajı */
+    .promo-success {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      font-size: var(--font-size-sm);
+      color: var(--color-accent-green);
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .cart-page .container {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-right {
+        position: static;
+      }
+
+      .step-connector {
+        width: 40px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cart-item__header {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .cart-item__event-title {
+        white-space: normal;
+      }
+
+      .step-item__label {
+        display: none;
+      }
+
+      .step-connector {
+        width: 24px;
+      }
+
+      .security-badges {
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Sepet item silme animasyonu */
+    .cart-item.removing {
+      animation: slide-out 0.3s ease forwards;
+    }
+
+    @keyframes slide-out {
+      to {
+        opacity: 0;
+        transform: translateX(24px);
+        max-height: 0;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    /* section-padding utility */
+    .section-padding {
+      padding-top: 48px;
+      padding-bottom: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" aria-label="Ana navigasyon">
+    <div class="container">
+      <a href="index.html" class="navbar__logo" aria-label="SeninBiletin Ana Sayfa">
+        <img src="gorseller/logo.png" alt="SeninBiletin Logo" class="navbar__logo-img" />
+        SeninBiletin
+      </a>
+      <div class="navbar__actions">
+        <a href="sepet.html" class="cart-icon-btn" aria-label="Sepetim" aria-current="page">
+          🛒
+          <span class="cart-icon-btn__badge has-items" id="navbar-cart-badge">0</span>
+        </a>
+        <a href="login.html" class="btn btn--outline">Giriş Yap</a>
+        <a href="register.html" class="btn btn--primary">Üye Ol</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- İlerleme Adımları — Continuity Prensibi -->
+  <div class="checkout-steps" role="navigation" aria-label="Satın alma adımları">
+    <div class="container">
+      <div class="step-item step-item--done">
+        <div class="step-item__circle">✓</div>
+        <span class="step-item__label">Koltuk Seç</span>
+      </div>
+      <div class="step-connector step-connector--done"></div>
+      <div class="step-item step-item--active">
+        <div class="step-item__circle">2</div>
+        <span class="step-item__label">Sepetim</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item step-item--pending">
+        <div class="step-item__circle">3</div>
+        <span class="step-item__label">Ödeme</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ana İçerik -->
+  <main class="cart-page" id="cart-main">
+    <div class="container">
+
+      <!-- Sol Kolon: Sepet Öğeleri -->
+      <div class="cart-left">
+        <div>
+          <h1 class="cart-section-title">
+            Sepetim
+            <span class="cart-count-badge" id="cart-count">0</span>
+          </h1>
+        </div>
+
+        <!-- Sepet Öğeleri buraya dinamik eklenir -->
+        <div id="cart-items-container"></div>
+
+        <!-- Alışverişe Devam Et -->
+        <a href="index.html" class="cart-back-link" id="continue-link">
+          ← Etkinliklere Göz At
+        </a>
+      </div>
+
+      <!-- Sağ Kolon: Sipariş Özeti -->
+      <div class="cart-right">
+
+        <!-- Sipariş Özeti Kartı — Common Region Prensibi -->
+        <div class="order-summary">
+          <div class="order-summary__header">
+            <h2 class="order-summary__title">Sipariş Özeti</h2>
+          </div>
+          <div class="order-summary__body" id="summary-body">
+            <div class="price-row">
+              <span class="price-row__label">Bilet Tutarı</span>
+              <span class="price-row__value" id="summary-tickets">0₺</span>
+            </div>
+            <div class="price-row">
+              <span class="price-row__label">Hizmet Bedeli</span>
+              <span class="price-row__value" id="summary-fee">0₺</span>
+            </div>
+            <div id="discount-row" class="price-row" style="display:none;">
+              <span class="price-row__label" style="color:var(--color-accent-green);">İndirim</span>
+              <span class="price-row__value" id="summary-discount" style="color:var(--color-accent-green);">-0₺</span>
+            </div>
+            <hr class="price-divider">
+            <div class="price-row price-row--total">
+              <span class="price-row__label">Toplam</span>
+              <span class="price-row__value" id="summary-total">0₺</span>
+            </div>
+          </div>
+          <div class="order-summary__footer">
+            <!-- Promo Kod -->
+            <div class="promo-input-group">
+              <input
+                type="text"
+                class="promo-input"
+                id="promo-input"
+                placeholder="İndirim kodu girin"
+                maxlength="20"
+                aria-label="İndirim kodu"
+              />
+              <button class="promo-btn" id="promo-btn" type="button">Uygula</button>
+            </div>
+            <div class="promo-success" id="promo-success">
+              <span>✓</span> <span id="promo-success-text">İndirim uygulandı!</span>
+            </div>
+
+            <button class="btn btn--primary checkout-btn" id="checkout-btn" disabled>
+              Ödemeye Geç →
+            </button>
+
+            <!-- Güvenlik Rozetleri — Similarity Prensibi -->
+            <div class="security-badges">
+              <span class="security-badge">🔒 SSL Güvenli</span>
+              <span class="security-badge">✓ 256-Bit Şifreleme</span>
+              <span class="security-badge">↩ İade Garantisi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yardım Kartı -->
+        <div class="help-card">
+          <span class="help-card__icon">💬</span>
+          <div class="help-card__text">
+            <strong>Yardıma mı ihtiyacın var?</strong>
+            Bilet almakla ilgili sorularınız için 7/24 destek hattımıza ulaşabilirsiniz.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name">SeninBiletin</div>
+          <p class="footer__brand-desc">Türkiye'nin en kolay bilet alma platformu. Konser, tiyatro, festival ve spor etkinliklerine anında bilet.</p>
+        </div>
+        <div>
+          <h3 class="footer__col-title">Etkinlikler</h3>
+          <ul class="footer__links">
+            <li><a href="konser.html">Konserler</a></li>
+            <li><a href="tiyatro.html">Tiyatro</a></li>
+            <li><a href="festival.html">Festivaller</a></li>
+            <li><a href="spor.html">Spor</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__col-title">Hesap</h3>
+          <ul class="footer__links">
+            <li><a href="login.html">Giriş Yap</a></li>
+            <li><a href="register.html">Üye Ol</a></li>
+            <li><a href="#">Biletlerim</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__col-title">Yardım</h3>
+          <ul class="footer__links">
+            <li><a href="#">SSS</a></li>
+            <li><a href="#">İletişim</a></li>
+            <li><a href="#">Gizlilik</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copyright">© 2026 SeninBiletin. Tüm hakları saklıdır.</span>
+        <div class="footer__socials">
+          <a href="#" class="footer__social-link" aria-label="Instagram">📷</a>
+          <a href="#" class="footer__social-link" aria-label="Twitter">🐦</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Promo kodları (demo)
+    const PROMO_CODES = {
+      'HOSGELDIN10': { type: 'percent', value: 10, label: '%10 indirim uygulandı!' },
+      'FESTIVAL50': { type: 'fixed', value: 50, label: '50₺ indirim uygulandı!' },
+      'ILKBILET': { type: 'percent', value: 15, label: '%15 indirim uygulandı!' },
+    };
+
+    const SERVICE_FEE_RATE = 0.05; // %5 hizmet bedeli
+
+    let cartData = [];
+    let appliedPromo = null;
+
+    function getCategoryDotClass(catTitle) {
+      const t = catTitle.toLowerCase();
+      if (t.includes('vip')) return 'seat-group__dot--vip';
+      if (t.includes('kat2')) return 'seat-group__dot--kat2';
+      return 'seat-group__dot--kat1';
+    }
+
+    function groupSeats(seats) {
+      const groups = {};
+      seats.forEach(s => {
+        const key = s.category;
+        if (!groups[key]) groups[key] = { category: s.category, count: 0, price: s.price, totalPrice: 0 };
+        groups[key].count++;
+        groups[key].totalPrice += s.price;
+      });
+      return Object.values(groups);
+    }
+
+    function formatPrice(n) {
+      return n.toLocaleString('tr-TR') + '₺';
+    }
+
+    function calcTotals() {
+      let ticketTotal = 0;
+      cartData.forEach(item => item.seats.forEach(s => ticketTotal += s.price));
+      const fee = Math.round(ticketTotal * SERVICE_FEE_RATE);
+      let discount = 0;
+      if (appliedPromo) {
+        if (appliedPromo.type === 'percent') discount = Math.round(ticketTotal * appliedPromo.value / 100);
+        else discount = Math.min(appliedPromo.value, ticketTotal);
+      }
+      return { ticketTotal, fee, discount, total: ticketTotal + fee - discount };
+    }
+
+    function renderSummary() {
+      const { ticketTotal, fee, discount, total } = calcTotals();
+      document.getElementById('summary-tickets').textContent = formatPrice(ticketTotal);
+      document.getElementById('summary-fee').textContent = formatPrice(fee);
+      document.getElementById('summary-total').textContent = formatPrice(total);
+      const discountRow = document.getElementById('discount-row');
+      if (discount > 0) {
+        discountRow.style.display = 'flex';
+        document.getElementById('summary-discount').textContent = '-' + formatPrice(discount);
+      } else {
+        discountRow.style.display = 'none';
+      }
+      const checkoutBtn = document.getElementById('checkout-btn');
+      checkoutBtn.disabled = cartData.length === 0;
+    }
+
+    function removeItem(eventKey) {
+      const itemEl = document.querySelector(`[data-event-key="${eventKey}"]`);
+      if (itemEl) {
+        itemEl.classList.add('removing');
+        setTimeout(() => {
+          cartData = cartData.filter(i => i.eventKey !== eventKey);
+          localStorage.setItem('sb_cart', JSON.stringify(cartData));
+          renderCart();
+        }, 280);
+      }
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cart-items-container');
+      const countBadge = document.getElementById('cart-count');
+      countBadge.textContent = cartData.length;
+
+      if (cartData.length === 0) {
+        container.innerHTML = `
+          <div class="cart-empty">
+            <span class="cart-empty__icon">🎟️</span>
+            <h2 class="cart-empty__title">Sepetiniz boş</h2>
+            <p class="cart-empty__desc">Henüz sepetinize bilet eklemediniz. Etkinliklere göz atarak bilet seçebilirsiniz.</p>
+            <a href="index.html" class="btn btn--primary btn--large" style="margin-top:8px;">Etkinlikleri Keşfet</a>
+          </div>
+        `;
+        renderSummary();
+        return;
+      }
+
+      container.innerHTML = cartData.map(item => {
+        const groups = groupSeats(item.seats);
+        const seatsHtml = groups.map(g => `
+          <div class="seat-group">
+            <div class="seat-group__left">
+              <div class="seat-group__dot ${getCategoryDotClass(g.category)}"></div>
+              <span class="seat-group__label">${g.category}</span>
+              <span class="seat-group__count">${g.count} Koltuk</span>
+            </div>
+            <span class="seat-group__price">${formatPrice(g.totalPrice)}</span>
+          </div>
+        `).join('');
+
+        const itemTotal = item.seats.reduce((a, s) => a + s.price, 0);
+
+        return `
+          <article class="cart-item" data-event-key="${item.eventKey}">
+            <div class="cart-item__header">
+              <div class="cart-item__image">
+                <img src="${item.image}" alt="${item.title}" loading="lazy" />
+              </div>
+              <div class="cart-item__event-info">
+                <div class="cart-item__event-category">${item.category}</div>
+                <h2 class="cart-item__event-title">${item.title}</h2>
+                <div class="cart-item__meta">
+                  <div class="cart-item__meta-row">
+                    <span>📅</span>
+                    <span>${item.date}</span>
+                  </div>
+                  <div class="cart-item__meta-row">
+                    <span>📍</span>
+                    <span>${item.venue}</span>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="cart-item__remove"
+                aria-label="${item.title} biletini sepetten kaldır"
+                onclick="removeItem('${item.eventKey}')"
+                title="Sepetten kaldır"
+              >✕</button>
+            </div>
+            <div class="cart-item__seats">
+              <p class="cart-item__seats-title">
+                🪑 Seçilen Koltuklar (${item.seats.length} adet)
+              </p>
+              ${seatsHtml}
+              <div style="display:flex;justify-content:flex-end;margin-top:12px;padding-top:12px;border-top:1px solid var(--color-border);">
+                <span style="font-size:var(--font-size-sm);font-weight:700;color:var(--color-text);">
+                  Ara Toplam: <span style="color:var(--color-primary);font-size:var(--font-size-base);">${formatPrice(itemTotal)}</span>
+                </span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      renderSummary();
+    }
+
+    // Promo kodu uygula
+    document.getElementById('promo-btn').addEventListener('click', () => {
+      const code = document.getElementById('promo-input').value.trim().toUpperCase();
+      const promo = PROMO_CODES[code];
+      const successEl = document.getElementById('promo-success');
+      const successText = document.getElementById('promo-success-text');
+
+      if (!promo) {
+        document.getElementById('promo-input').style.borderColor = 'var(--color-accent-red)';
+        successEl.style.display = 'none';
+        setTimeout(() => document.getElementById('promo-input').style.borderColor = '', 2000);
+        return;
+      }
+
+      appliedPromo = promo;
+      successText.textContent = promo.label;
+      successEl.style.display = 'flex';
+      document.getElementById('promo-input').style.borderColor = 'var(--color-accent-green)';
+      document.getElementById('promo-input').disabled = true;
+      document.getElementById('promo-btn').disabled = true;
+      renderSummary();
+    });
+
+    // Ödemeye geç
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+      if (cartData.length === 0) return;
+      window.location.href = 'odeme.html';
+    });
+
+    // Sayfa yüklendiğinde sepeti oku ve render et
+    document.addEventListener('DOMContentLoaded', () => {
+      cartData = JSON.parse(localStorage.getItem('sb_cart') || '[]');
+      const badge = document.getElementById('navbar-cart-badge');
+      badge.textContent = cartData.length;
+      if (cartData.length === 0) badge.classList.remove('has-items');
+      renderCart();
+    });
+  </script>
+
+</body>
+</html>
